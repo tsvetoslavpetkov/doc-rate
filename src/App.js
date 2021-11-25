@@ -1,6 +1,6 @@
 import './App.css';
 import { Route } from 'react-router-dom';
-import Nav from './components/Nav.js';
+import Navigation from './components/Nav.js';
 import Home from './views/home/Home.js';
 import About from './views/about/About.js';
 import Doctors from './views/doctors/Doctors.js';
@@ -8,7 +8,7 @@ import Doctors from './views/doctors/Doctors.js';
 export default function App() {
   return (
     <div className="App">
-    <Nav />
+    <Navigation />
 
     <main id="main-content">
         <Route path="/" exact component={Home} />
