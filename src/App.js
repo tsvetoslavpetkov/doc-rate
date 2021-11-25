@@ -1,9 +1,9 @@
 import './App.css';
 import { Route } from 'react-router-dom';
-import Navigation from './components/Nav.js';
-import Home from './views/home/Home.js';
-import About from './views/about/About.js';
-import Doctors from './views/doctors/Doctors.js';
+import Navigation from './components/Navigation/Nav.js';
+import Home from './components/home/Home.js';
+import About from './components/about/About.js'
+import Doctors from './components/doctors/Doctors.js';
 
 export default function App() {
   return (

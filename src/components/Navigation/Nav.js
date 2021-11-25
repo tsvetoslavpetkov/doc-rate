@@ -11,6 +11,8 @@ export default function Navigation() {
                     <Nav.Link><Link to="/home">Начало</Link></Nav.Link>
                     <Nav.Link><Link to="/about">За Нас</Link></Nav.Link>
                     <Nav.Link><Link to="/contacts">Контакти</Link></Nav.Link>
+                    <Nav.Link><Link to="/login">Влез</Link></Nav.Link>
+                    <Nav.Link><Link to="/register">Регистрация</Link></Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
