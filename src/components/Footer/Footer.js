@@ -1,9 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import './Footer.css'
 
 export default function Footer() {
     return (
-        <Container>
-            <Row>
+    <>
+        <div className="margin-footer-fix"></div>
+        <Container fluid className="footer-container bg-dark p-3 text-secondary bottom">
+            <Row >
                 <Col sm={8}>sm=8</Col>
                 <Col sm={4}>sm=4</Col>
             </Row>
@@ -13,5 +16,6 @@ export default function Footer() {
                 <Col sm>sm=true</Col>
             </Row>
         </Container>
+    </>
     )
 }

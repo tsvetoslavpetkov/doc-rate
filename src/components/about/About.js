@@ -1,6 +1,6 @@
 import './About.css';
 
-export default function App() {
+export default function About() {
   return (
     <div className="App">
       <header className="App-header">
