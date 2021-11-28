@@ -1,38 +1,46 @@
-import { Form, Button, Container, Card } from 'react-bootstrap'
+import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
- 
+import './Register.css'
+
 export default function Register() {
     return (
-        <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-            <Card className="py-3" style={{minWidth: "400px", top: "-100px"}}>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Регистрация</h2>
-                    <Form>
-                        <Form.Group className="mb-4" controlId="formBasicEmail">
-                            <Form.Label className="label">Имейл</Form.Label>
-                            <Form.Control type="email" placeholder="email@mail.bg" />
-                            <Form.Text className="text-muted">
-                
-                            </Form.Text>
-                        </Form.Group>
+        <Container fluid className="d-flex align-items-center justify-content-center container" style={{ minHeight: "100vh", width: "100%" }}>
+            <Card style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
+                <Card.Body className="register-card">
+                    <Row>
+                        <h3 className="text-center mb-2">Регистрация</h3>
+                        <Col className="py-2">
+                            <Form>
+                                <Form.Group className="mb-2" controlId="formBasicEmail">
+                                    <Form.Label className="label">Имейл</Form.Label>
+                                    <Form.Control type="email" placeholder="email@mail.bg" />
+                                    <Form.Text className="text-muted">
 
-                        <Form.Group className="mb-4" controlId="formBasicPassword">
-                            <Form.Label className="label">Парола</Form.Label>
-                            <Form.Control type="password" placeholder="******" />
-                        </Form.Group>
+                                    </Form.Text>
+                                </Form.Group>
 
-                        <Form.Group className="mb-4" controlId="formBasicRepeatPassword">
-                            <Form.Label className="label">Повторeте паролата</Form.Label>
-                            <Form.Control type="password" placeholder="******" />
-                        </Form.Group>
+                                <Form.Group className="mb-2" controlId="formBasicPassword">
+                                    <Form.Label className="label">Парола</Form.Label>
+                                    <Form.Control type="password" placeholder="******" />
+                                </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Регистрация
-                        </Button>
-                    </Form>
-                    <div className="mt-4">
-                        Вече имате профил? <Link to="/login" className="no-line"  >Влезте!</Link>
-                    </div>
+                                <Form.Group className="mb-4" controlId="formBasicRepeatPassword">
+                                    <Form.Label className="label">Повторeте паролата</Form.Label>
+                                    <Form.Control type="password" placeholder="******" />
+                                </Form.Group>
+
+                                <Button variant="primary" type="submit">
+                                    Регистрация
+                                </Button>
+                            </Form>
+                            <div className="mt-2">
+                                Вече имате профил? <Link to="/login" className="no-line"  >Влезте!</Link>
+                            </div>
+                        </Col>
+                        <Col xs={7}>
+                        </Col>
+                    </Row>
+
                 </Card.Body>
             </Card>
         </Container>

@@ -2,6 +2,11 @@
   float:left;
 }
 
+.top-elements{
+  z-index: 3;
+}
+
+
 .no-line{
   text-decoration: none;
 }

@@ -1,0 +1,6 @@
+.login-card {
+    background-repeat: no-repeat;
+    background-image: url('./login-animation.svg');
+    background-position: right -50px bottom -100px;
+    background-size: 80%;
+}

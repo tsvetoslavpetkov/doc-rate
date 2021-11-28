@@ -1,0 +1,5 @@
+.register-card {
+    background-repeat: no-repeat;
+    background-image: url('./register-animation.svg');
+    background-position: right -80px bottom -40px;
+}

@@ -4,7 +4,7 @@ import './Footer.css'
 export default function Footer() {
     return (
     <>
-        <div className="margin-footer-fix"></div>
+        <div className="margin-footer-fix "></div>
         <Container fluid className="footer-container bg-dark p-3 text-secondary bottom">
             <Row >
                 <Col sm={8}>sm=8</Col>
