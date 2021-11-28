@@ -8,12 +8,12 @@ export default function Navigation() {
             <Container>
                 <Navbar.Brand> DocRate </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link><Link className="nav-link" to="/"> Начало </Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="/about"> За Нас </Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="/contacts"> Контакти </Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="/login"> Влез </Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="/register"> Регистрация </Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="/logout"> Излез </Link></Nav.Link>
+                    <Link className="nav-link" to="/"> Начало </Link>
+                    <Link className="nav-link" to="/about"> За Нас </Link>
+                    <Link className="nav-link" to="/contacts"> Контакти </Link>
+                    <Link className="nav-link" to="/login"> Влез </Link>
+                    <Link className="nav-link" to="/register"> Регистрация </Link>
+                    <Link className="nav-link" to="/logout"> Излез </Link>
                 </Nav>
             </Container>
         </Navbar>
