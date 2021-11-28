@@ -7,23 +7,6 @@ import About from './components/about/About.js'
 import Doctors from './components/doctors/Doctors.js';
 import Login from './components/login/Login.js'
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
-import { firebaseConfig } from './config/firebaseConfig';
-
-import { collection, getDocs } from 'firebase/firestore/lite';
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function getAllDoctors(db) {
-    const doctorsCol = collection(db, 'doctors');
-    const doctorsSnapshot = await getDocs(doctorsCol);
-    const doctorsList = doctorsSnapshot.docs.map(doc => doc.data());
-    console.log(doctorsList);
-    return doctorsList;
-  }
-
 export default function App() {
   return (
     <div className="App">
