@@ -33,7 +33,7 @@ export default function Register() {
                                     Регистрация
                                 </Button>
                             </Form>
-                            <div className="mt-2">
+                            <div className="mt-3">
                                 Вече имате профил? <Link to="/login" className="no-line"  >Влезте!</Link>
                             </div>
                         </Col>
