@@ -1,5 +1,13 @@
+.label{
+  float:left;
+}
+
+.no-line{
+  text-decoration: none;
+}
+
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {

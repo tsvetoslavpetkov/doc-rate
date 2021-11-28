@@ -6,6 +6,7 @@ import Home from './components/home/Home.js';
 import About from './components/about/About.js'
 import Doctors from './components/doctors/Doctors.js';
 import Login from './components/login/Login.js'
+import Register from './components/registration/Register';
 
 export default function App() {
   return (
@@ -18,7 +19,8 @@ export default function App() {
         <Route path="/about" component={About} />
         <Route path="/contact" component={Doctors} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Doctors} />
+        <Route path="/register" component={Register} />
+        <Route path="/logout" component={Doctors} />
       </main>
       <footer>
         <Footer />

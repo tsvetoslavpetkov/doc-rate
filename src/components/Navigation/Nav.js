@@ -13,6 +13,7 @@ export default function Navigation() {
                     <Nav.Link><Link className="nav-link" to="/contacts"> Контакти </Link></Nav.Link>
                     <Nav.Link><Link className="nav-link" to="/login"> Влез </Link></Nav.Link>
                     <Nav.Link><Link className="nav-link" to="/register"> Регистрация </Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/logout"> Излез </Link></Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
