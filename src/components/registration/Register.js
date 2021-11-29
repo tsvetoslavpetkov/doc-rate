@@ -1,8 +1,23 @@
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Register.css'
+import { register } from '../../services/authService'
 
-export default function Register() {
+export default function Register(props) {
+
+    async function submitHandler(e) {
+        e.preventDefault();
+        let formData = new FormData(e.currentTarget);
+        let { email, password } = Object.fromEntries(formData);
+        let response = await register(email, password);
+
+        if (!response.message) {
+            //TODO: NOTIFICATION
+            console.log('REGISTER SUCCESS');
+            props.history.push("/")
+        }
+    }
+
     return (
         <Container fluid className="d-flex align-items-center justify-content-center container" style={{ minHeight: "100vh", width: "100%" }}>
             <Card style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
@@ -10,10 +25,10 @@ export default function Register() {
                     <Row>
                         <h3 className="text-center mb-2">Регистрация</h3>
                         <Col className="py-2">
-                            <Form>
+                            <Form onSubmit={submitHandler}>
                                 <Form.Group className="mb-2" controlId="formBasicEmail">
                                     <Form.Label className="label">Имейл</Form.Label>
-                                    <Form.Control type="email" placeholder="email@mail.bg" />
+                                    <Form.Control type="email" name="email" placeholder="email@mail.bg" />
                                     <Form.Text className="text-muted">
 
                                     </Form.Text>
@@ -21,12 +36,12 @@ export default function Register() {
 
                                 <Form.Group className="mb-2" controlId="formBasicPassword">
                                     <Form.Label className="label">Парола</Form.Label>
-                                    <Form.Control type="password" placeholder="******" />
+                                    <Form.Control type="password" name="password" placeholder="******" />
                                 </Form.Group>
 
                                 <Form.Group className="mb-4" controlId="formBasicRepeatPassword">
                                     <Form.Label className="label">Повторeте паролата</Form.Label>
-                                    <Form.Control type="password" placeholder="******" />
+                                    <Form.Control type="password" name="repeatPassword" placeholder="******" />
                                 </Form.Group>
 
                                 <Button variant="primary" type="submit">

@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import validator from 'validator';
+// import validator from 'validator';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Login.css'
-import { login } from '../../services/loginService'
+import { login } from '../../services/authService'
 
-
-export default function Login() {
+export default function Login(props) {
     const [validated, setValidated] = useState(false);
 
-    const submitHandler = async (e) => {
+    async function submitHandler (e) {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
         }
+        
         let formData = new FormData(e.currentTarget);
         let { email, password } = Object.fromEntries(formData);
         e.preventDefault();
         let response = await login(email, password);
-
 
         console.log(response);
 
@@ -27,6 +26,7 @@ export default function Login() {
         //TODO: validation from validator 
 
         setValidated(true);
+        props.history.push('/')
     }
 
     return (
