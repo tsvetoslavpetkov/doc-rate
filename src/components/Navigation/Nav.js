@@ -14,6 +14,7 @@ export default function Navigation() {
                     <Link className="nav-link" to="/login"> Влез </Link>
                     <Link className="nav-link" to="/register"> Регистрация </Link>
                     <Link className="nav-link" to="/logout"> Излез </Link>
+                    <Link className="nav-link" to="/doc/create"> Добави Лекар </Link>
                 </Nav>
             </Container>
         </Navbar>

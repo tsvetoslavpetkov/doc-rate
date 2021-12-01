@@ -2,7 +2,7 @@ import { useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import './Login.css'
+import './CreateDoctor.css'
 import { login } from '../../services/authService'
 
 export default function Login(props) {
