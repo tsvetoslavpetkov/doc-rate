@@ -15,6 +15,13 @@ async function get(endPoint, token) {
     let options = {
         headers,
     }
+
+    if (endPoint === '/users/logout') {
+        return fetch(url, options)
+            .then(res => {
+                return res
+            })
+    }
     let response = await fetch(url, options);
     if (!response.ok) {
         errorHandler(response)

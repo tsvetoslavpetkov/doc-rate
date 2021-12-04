@@ -7,6 +7,7 @@ import Register from './registration/Register';
 import CreateDoctor from './createDoctor/CreateDoctor';
 import DoctorDetails from './doctorDetails/DoctorDetails';
 import { Container } from 'react-bootstrap';
+import Logout from './logout/Logout';
 
 export default function MainContentRouter() {
     return (
@@ -17,7 +18,7 @@ export default function MainContentRouter() {
                 <Route path="/contact" component={Doctors} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route path="/logout" component={Doctors} />
+                <Route path="/logout" component={Logout} />
                 <Route path="/doc/create" exact component={CreateDoctor} />
                 <Route path="/doc/:id" exact component={DoctorDetails} />
             </Switch>
