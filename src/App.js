@@ -16,13 +16,16 @@ export default function App() {
         setUser(authData);
     }
 
-    function onLogout(authData) {
-        setUser(authData);
+    function onLogout() {
+        setUser({
+            accessToken: '',
+            email: '',
+            _id: '',
+        });
     }
 
-
     return (
-        <AuthContext.Provider value={ user, onLogin }>
+        <AuthContext.Provider value={{ user, onLogin, onLogout }}>
             <div className="App">
                 <header user={user.email}>
                     <Navigation />

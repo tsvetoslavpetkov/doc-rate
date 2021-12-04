@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap'
+import { AuthContext } from '../../contexts/AuthContext';
 import { create } from '../../services/doctorService'
 import './CreateDoctor.css'
 
 export default function CreateDoctor(props) {
     const [validated, setValidated] = useState(false);
+    const { user } = useContext(AuthContext);
 
     async function submitHandler(e) {
         const form = e.currentTarget;
@@ -26,7 +28,8 @@ export default function CreateDoctor(props) {
         }     
 
         setValidated(true);
-        create(doctorData)
+        console.log(user.accessToken);
+        create(doctorData, user.accessToken)
         props.history.push('/')
     }
 

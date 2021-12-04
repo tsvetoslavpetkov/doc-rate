@@ -2,14 +2,14 @@ import { MAIN_URL as rootUrl } from "../config/constants";
 
 async function errorHandler(response) {
     let message = await response.text();
-    throw new Error(`${response.status}: ${response.statusText}\n${message}`)
+    console.log(JSON.parse(message));
+    return JSON.parse(message);
 }
 
-async function get(endPoint) {
+async function get(endPoint, token) {
     let url = rootUrl + endPoint;
     let headers = {};
-    if (localStorage.getItem('auth_token')) {
-        let token = localStorage.getItem('auth_token');
+    if (token) {
         headers['X-Authorization'] = token;
     }
     let options = {
@@ -18,18 +18,18 @@ async function get(endPoint) {
     let response = await fetch(url, options);
     if (!response.ok) {
         errorHandler(response)
+    } else {
+        let result = await response.json()
+        return result;
     }
-    let result = await response.json()
-    return result;
 }
-async function post(endPoint, body) {
+async function post(endPoint, body, token) {
     let url = rootUrl + endPoint;
     let method = 'post'
     let headers = {
         'Content-Type': 'application/json'
     };
-    if (localStorage.getItem('auth_token')) {
-        let token = localStorage.getItem('auth_token');
+    if (token) {
         headers['X-Authorization'] = token;
     }
     let options = {
@@ -40,18 +40,18 @@ async function post(endPoint, body) {
     let response = await fetch(url, options);
     if (!response.ok) {
         errorHandler(response)
+    } else {
+        let result = await response.json()
+        return result;
     }
-    let result = await response.json()
-    return result;
 }
-async function put(endPoint, body) {
+async function put(endPoint, body, token) {
     let url = rootUrl + endPoint;
     let method = 'put'
     let headers = {
         'Content-Type': 'application/json'
     };
-    if (localStorage.getItem('auth_token')) {
-        let token = localStorage.getItem('auth_token');
+    if (token) {
         headers['X-Authorization'] = token;
     }
     let options = {
@@ -62,16 +62,16 @@ async function put(endPoint, body) {
     let response = await fetch(url, options);
     if (!response.ok) {
         errorHandler(response)
+    } else {
+        let result = await response.json()
+        return result;
     }
-    let result = await response.json()
-    return result;
 }
-async function del(endPoint) {
+async function del(endPoint, token) {
     let url = rootUrl + endPoint;
     let method = 'delete'
     let headers = {};
-    if (localStorage.getItem('auth_token')) {
-        let token = localStorage.getItem('auth_token');
+    if (token) {
         headers['X-Authorization'] = token;
     }
     let options = {
@@ -81,11 +81,12 @@ async function del(endPoint) {
     let response = await fetch(url, options);
     if (!response.ok) {
         errorHandler(response)
+    } else {
+        let result = await response.json()
+        return result;
     }
-    let result = await response.json()
-    return result;
 }
 
-let methods = {get, post, put, del}
+let methods = { get, post, put, del }
 
 export default methods;

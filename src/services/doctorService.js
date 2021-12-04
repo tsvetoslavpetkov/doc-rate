@@ -1,14 +1,14 @@
 import request from '../helpers/request'
 
 export function getAll (){
-    return request.get('/jsonstore/doctors')
+    return request.get('/data/doctors')
 }
 
-export function getOne (id){
-    return request.get(`/jsonstore/doctors/${id}`)
+export function getOne (id, token){
+    return request.get(`/data/doctors/${id}`, token)
 }
 
-export function create (data){
+export function create (data, token){
     console.log('asdsadsad');
-    return request.post('/jsonstore/doctors', data)
+    return request.post('/data/doctors', data, token)
 }

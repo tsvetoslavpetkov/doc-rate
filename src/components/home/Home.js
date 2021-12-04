@@ -7,14 +7,18 @@ export default function Home() {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    getAll()
-      .then(data => {
-        setDoctors(Object.values(data));
-      });
+    getAll(response => {
+      console.log(response);
+    })
+      .then(doctors => {
+        if (doctors) {
+          setDoctors(doctors)
+        }
+      })
   }, [])
   return (
     <div>
-    {doctors.map(doctor => <DoctorCard doctor={doctor} key={doctor._id} />)}
+      {doctors.map(doctor => <DoctorCard doctor={doctor} key={doctor._id} />)}
     </div>
   );
 }
