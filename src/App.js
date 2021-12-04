@@ -23,8 +23,8 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/logout" component={Doctors} />
-        <Route path="/doc/create" component={CreateDoctor} />
-        <Route path="/doc/create" component={DoctorDetails} />
+        <Route path="/doc/create" exact component={CreateDoctor} />
+        <Route path="/doc/:id" component={DoctorDetails} />
       </main>
       <footer>
         <Footer />

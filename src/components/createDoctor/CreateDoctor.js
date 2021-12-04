@@ -23,15 +23,10 @@ export default function CreateDoctor(props) {
             secondName,
             price,
             speciality
-        }
-
-        let response = await create(doctorData)
-
-
-        //TODO: validation from server?!!?!?
-        //TODO: validation from validator 
-
+        }     
+        
         setValidated(true);
+        create(doctorData)
         props.history.push('/')
     }
 

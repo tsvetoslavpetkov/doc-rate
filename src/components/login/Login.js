@@ -18,9 +18,9 @@ export default function Login(props) {
         let formData = new FormData(e.currentTarget);
         let { email, password } = Object.fromEntries(formData);
         e.preventDefault();
-        let response = await login(email, password);
+        
+        login(email, password);
 
-        console.log(response);
 
         //TODO: validation from server?!!?!?
         //TODO: validation from validator 

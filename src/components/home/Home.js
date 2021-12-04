@@ -9,11 +9,9 @@ export default function Home() {
   useEffect(() => {
     getAll()
       .then(data => {
-        console.log(data);
         setDoctors(Object.values(data));
       });
   }, [])
-  console.log(doctors);
   return (
     <div>
     {doctors.map(doctor => <DoctorCard doctor={doctor} key={doctor._id} />)}

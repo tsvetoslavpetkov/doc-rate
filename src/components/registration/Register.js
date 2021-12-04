@@ -13,7 +13,6 @@ export default function Register(props) {
 
         if (!response.message) {
             //TODO: NOTIFICATION
-            console.log('REGISTER SUCCESS');
             props.history.push("/")
         }
     }
