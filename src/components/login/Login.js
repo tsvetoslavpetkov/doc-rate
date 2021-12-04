@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import validator from 'validator';
-import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
+import { Form, Button, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { login } from '../../services/authService'
@@ -30,7 +30,7 @@ export default function Login(props) {
     }
 
     return (
-        <Container fluid className="d-flex align-items-center justify-content-center container" style={{ minHeight: "100vh", width: "100%" }}>
+       
             <Card style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
                 <Card.Body className="login-card">
                     <Row>
@@ -76,6 +76,5 @@ export default function Login(props) {
 
                 </Card.Body>
             </Card>
-        </Container>
     )
 }

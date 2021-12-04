@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import validator from 'validator';
-import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
+import { Form, Button, Card, Row, Col } from 'react-bootstrap'
 import { create } from '../../services/doctorService'
 import './CreateDoctor.css'
 
@@ -24,14 +24,14 @@ export default function CreateDoctor(props) {
             price,
             speciality
         }     
-        
+
         setValidated(true);
         create(doctorData)
         props.history.push('/')
     }
 
     return (
-        <Container fluid className="d-flex align-items-center justify-content-center container" style={{ minHeight: "100vh", width: "100%" }}>
+        
             <Card >
                 <Card.Body className="login-card">
                     <Row>
@@ -96,6 +96,5 @@ export default function CreateDoctor(props) {
 
                 </Card.Body>
             </Card>
-        </Container>
     )
 }
