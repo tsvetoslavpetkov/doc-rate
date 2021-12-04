@@ -2,12 +2,14 @@ import './Nav.css';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function Navigation() {
+export default function Navigation({email}) {
     return (
         <Navbar className="top-elements" bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand> DocRate </Navbar.Brand>
                 <Nav className="me-auto">
+                    
+                    <Link className="nav-link" to="/"> {email} </Link>
                     <Link className="nav-link" to="/"> Начало </Link>
                     <Link className="nav-link" to="/about"> За Нас </Link>
                     <Link className="nav-link" to="/contacts"> Контакти </Link>

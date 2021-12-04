@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { login } from '../../services/authService'
+import { AuthContext } from '../../contexts/AuthContext';
+
 
 export default function Login(props) {
     const [validated, setValidated] = useState(false);
+    const { onLogin } = useContext(AuthContext)
 
     async function submitHandler (e) {
         const form = e.currentTarget;
@@ -19,8 +22,8 @@ export default function Login(props) {
         let { email, password } = Object.fromEntries(formData);
         e.preventDefault();
         
-        login(email, password);
-
+        login(email, password)
+        .then(data => onLogin(data))
 
         //TODO: validation from server?!!?!?
         //TODO: validation from validator 
