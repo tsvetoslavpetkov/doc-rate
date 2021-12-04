@@ -9,5 +9,6 @@ export function getOne (id){
 }
 
 export function create (data){
+    console.log('asdsadsad');
     return request.post('/jsonstore/doctors', data)
 }
