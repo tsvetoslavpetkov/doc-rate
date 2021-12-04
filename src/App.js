@@ -8,6 +8,7 @@ import Doctors from './components/doctors/Doctors';
 import Login from './components/login/Login'
 import Register from './components/registration/Register';
 import CreateDoctor from './components/createDoctor/CreateDoctor';
+import DoctorDetails from './components/doctorDetails/DoctorDetails';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/register" component={Register} />
         <Route path="/logout" component={Doctors} />
         <Route path="/doc/create" component={CreateDoctor} />
+        <Route path="/doc/create" component={DoctorDetails} />
       </main>
       <footer>
         <Footer />

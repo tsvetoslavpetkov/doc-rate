@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap'
-import { create } from '../../services/doctorService'
-import './CreateDoctor.css'
+import { getOne } from '../../services/doctorService'
+import './DoctorDetails.css'
 
-export default function CreateDoctor(props) {
+export default function DoctorDetails(props) {
     const [validated, setValidated] = useState(false);
 
     async function submitHandler(e) {
@@ -24,8 +24,8 @@ export default function CreateDoctor(props) {
             price,
             speciality
         }
-
-        let response = await create(doctorData)
+        
+        let response = await getOne(doctorData)
 
 
         //TODO: validation from server?!!?!?

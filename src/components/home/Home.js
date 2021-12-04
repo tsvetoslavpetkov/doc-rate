@@ -1,11 +1,22 @@
 import './Home.css';
-import { getAllDoctors } from '../../services/doctorService';
-
-console.log(getAllDoctors);
+import { getAll } from '../../services/doctorService';
+import { useEffect, useState } from 'react';
+import DoctorCard from './DoctorCard';
 
 export default function Home() {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    getAll()
+      .then(data => {
+        console.log(data);
+        setDoctors(Object.values(data));
+      });
+  }, [])
+  console.log(doctors);
   return (
-    <div className="App">
+    <div>
+    {doctors.map(doctor => <DoctorCard doctor={doctor} key={doctor._id} />)}
     </div>
   );
 }
