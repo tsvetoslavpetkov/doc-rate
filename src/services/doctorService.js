@@ -9,5 +9,6 @@ export function getOne (id, token){
 }
 
 export function create (data, token){
+    console.log(data);
     return request.post('/data/doctors', data, token)
 }

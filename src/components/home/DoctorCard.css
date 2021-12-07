@@ -1,0 +1,11 @@
+.home-card-img{
+    height: 200px;
+
+    background-position: center top;
+    background-size: cover;
+    
+}
+
+.home-card{
+    height: 300px;
+}

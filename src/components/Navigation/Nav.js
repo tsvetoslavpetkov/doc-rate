@@ -1,7 +1,7 @@
 import './Nav.css';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Navigation() {
@@ -14,10 +14,9 @@ export default function Navigation() {
                 <Navbar.Brand> DocRate </Navbar.Brand>
                 <Nav className="me-auto">
 
-                    {user?.email
+                    {user?._id
                         ?
                         <>
-
                             <Link className="nav-link" to="/"> Начало </Link>
                             <Link className="nav-link" to="/about"> За Нас </Link>
                             <Link className="nav-link" to="/contacts"> Контакти </Link>
