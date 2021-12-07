@@ -8,6 +8,7 @@ import CreateDoctor from './createDoctor/CreateDoctor';
 import DoctorDetails from './doctorDetails/DoctorDetails';
 import { Container } from 'react-bootstrap';
 import Logout from './logout/Logout';
+import EditDoctor from './EditDoctor/EditDoctor';
 
 export default function MainContentRouter() {
     return (
@@ -21,6 +22,7 @@ export default function MainContentRouter() {
                 <Route path="/logout" component={Logout} />
                 <Route path="/doc/create" exact component={CreateDoctor} />
                 <Route path="/doc/:id" exact component={DoctorDetails} />
+                <Route path="/doc/:id/edit" exact component={EditDoctor} />
             </Switch>
         </Container>
     )
