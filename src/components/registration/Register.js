@@ -9,12 +9,14 @@ export default function Register(props) {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
         let { email, password } = Object.fromEntries(formData);
-        let response = await register(email, password);
+        register(email, password)
+            .then(res => {
+                if (!res.message) {
+                    //TODO: NOTIFICATION
+                    props.history.push("/")
+                }
+            })
 
-        if (!response.message) {
-            //TODO: NOTIFICATION
-            props.history.push("/")
-        }
     }
 
     return (

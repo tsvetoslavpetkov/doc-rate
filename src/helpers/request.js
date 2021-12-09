@@ -94,6 +94,6 @@ async function del(endPoint, token) {
     }
 }
 
-let methods = { get, post, put, del }
+    let methods = { get, post, put, del }
 
-export default methods;
+    export default methods;

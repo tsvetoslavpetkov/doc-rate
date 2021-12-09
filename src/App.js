@@ -22,8 +22,6 @@ export default function App() {
             email: '',
             _id: '',
         });
-        console.log('LOGOUT');
-        console.log(user);
     }
 
     return (

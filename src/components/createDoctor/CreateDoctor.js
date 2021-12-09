@@ -18,8 +18,9 @@ export default function CreateDoctor(props) {
 
         let formData = new FormData(e.currentTarget);
         let { ...data } = Object.fromEntries(formData);
+        data.likes = [];
         e.preventDefault();
-
+        //TODO: VALIDATION 
         setValidated(true);
         create(data, user.accessToken)
         props.history.push('/')

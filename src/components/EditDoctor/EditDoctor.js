@@ -1,12 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap'
+import { useParams } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
-import { create } from '../../services/doctorService'
+import { edit, getOne } from '../../services/doctorService'
 import './EditDoctor.css'
 
 export default function EditDoctor(props) {
+    const { id } = useParams();
+
+    const [doctor, setDoctor] = useState({})
     const [validated, setValidated] = useState(false);
+
+    useEffect(() => {
+        getOne(id).then(data => {
+            setDoctor(data);
+        })
+    }, [id])
+    
     const { user } = useContext(AuthContext);
 
     async function submitHandler(e) {
@@ -21,16 +32,15 @@ export default function EditDoctor(props) {
         e.preventDefault();
 
         setValidated(true);
-        create(data, user.accessToken)
+        edit(id, data, user.accessToken)
         props.history.push('/')
     }
 
     return (
-
         <Card >
             <Card.Body>
                 <Row>
-                    <h3 className="text-center mb-2">Добавяне на лекар</h3>
+                    <h3 className="text-center mb-2">Редактиране на лекар</h3>
                     <Col className="py-4">
                         <Form onSubmit={submitHandler} noValidate validated={validated}>
                             <Form.Group className="mb-2" controlId="formBasicEmail">
@@ -40,6 +50,7 @@ export default function EditDoctor(props) {
                                     type="text"
                                     name="imageUrl"
                                     placeholder="https://..."
+                                    defaultValue={doctor.imageUrl}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Моля попълнете адрес на изображение.
@@ -47,7 +58,7 @@ export default function EditDoctor(props) {
                             </Form.Group>
                             <Form.Group className="mb-2" controlId="formBasicEmail">
                                 <Form.Label className="label">Титла</Form.Label>
-                                <Form.Select aria-label="Default select example" name="title">
+                                <Form.Select aria-label="Default select example" value={doctor.title} name="title">
                                     <option value="д-р">д-р</option>
                                     <option value="доц.">доц.</option>
                                     <option value="Проф.">Проф.</option>
@@ -60,7 +71,8 @@ export default function EditDoctor(props) {
                                     required
                                     type="text"
                                     name="firstName"
-                                    placeholder="Ани"
+                                    placeholder="Име"
+                                    defaultValue={doctor.firstName}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Моля впишете име.
@@ -73,7 +85,8 @@ export default function EditDoctor(props) {
                                     required
                                     type="text"
                                     name="secondName"
-                                    placeholder="Дашева" />
+                                    placeholder="Фамилия"
+                                    defaultValue={doctor.secondName} />
                                 <Form.Control.Feedback type="invalid">
                                     Моля изберете фамилия.
                                 </Form.Control.Feedback>
@@ -85,7 +98,8 @@ export default function EditDoctor(props) {
                                     required
                                     type="text"
                                     name="speciality"
-                                    placeholder="детски кардиолог" />
+                                    placeholder="специалност"
+                                    defaultValue = {doctor.speciality} />
                                 <Form.Control.Feedback type="invalid">
                                     Моля изберете специалност.
                                 </Form.Control.Feedback>
@@ -97,7 +111,8 @@ export default function EditDoctor(props) {
                                     required
                                     type="text"
                                     name="address"
-                                    placeholder="София, бул. България 51" />
+                                    placeholder="Въведете адрес..."
+                                    defaultValue = {doctor.address}  />
                                 <Form.Control.Feedback type="invalid">
                                     Моля изберете адрес.
                                 </Form.Control.Feedback>
@@ -121,16 +136,17 @@ export default function EditDoctor(props) {
                                 <Form.Label className="label">Цена на преглед</Form.Label>
                                 <Form.Control
                                     required
-                                    type="text"
+                                    type="number"
                                     name="price"
-                                    placeholder="50 (лв.)" />
+                                    placeholder="50 (лв.)"
+                                    defaultValue={doctor.price} />
                                 <Form.Control.Feedback type="invalid">
                                     Моля изберете специалност.
                                 </Form.Control.Feedback>
                             </Form.Group>
 
                             <Button variant="primary" type="submit">
-                                Добави
+                                Редактирай
                             </Button>
                         </Form>
                     </Col>

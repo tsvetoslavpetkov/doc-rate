@@ -1,1 +1,1 @@
-export const MAIN_URL = 'http://localhost:3030';
+export const MAIN_URL = 'https://practice-server-softuni.herokuapp.com';

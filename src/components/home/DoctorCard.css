@@ -1,11 +1,10 @@
-.home-card-img{
+.home-card-img {
     height: 200px;
-
     background-position: center top;
     background-size: cover;
-    
+    border-radius: 3px;
 }
 
-.home-card{
-    height: 300px;
+.home-card {
+    height: 350px;
 }

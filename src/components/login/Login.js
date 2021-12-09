@@ -24,12 +24,11 @@ export default function Login(props) {
 
         login(email, password)
             .then(authData => {
-                console.log(authData);
                 onLogin(authData);
+                props.history.push('/')
             })
 
         setValidated(true);
-        props.history.push('/')
 
         //TODO: validation from server?!!?!?
         //TODO: validation from validator 
