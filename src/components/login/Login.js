@@ -36,7 +36,7 @@ export default function Login(props) {
 
     return (
 
-        <Card style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
+        <Card className="main-card" style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
             <Card.Body className="login-card">
                 <Row>
                     <h3 className="text-center mb-2">Вписване</h3>

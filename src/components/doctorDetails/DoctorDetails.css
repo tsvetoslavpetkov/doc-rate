@@ -8,5 +8,6 @@
 }
 
 .details-card-body{
+    text-align: left;
     min-width: 500px;
 }

@@ -1,3 +1,8 @@
 .Link {
     text-decoration: none;
 }
+
+.main-nav {
+    border-bottom: 1px solid rgb(66, 66, 66);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.514);
+}

@@ -21,7 +21,7 @@ export default function Register(props) {
 
     return (
 
-        <Card style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
+        <Card className="main-card" style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
             <Card.Body className="register-card">
                 <Row>
                     <h3 className="text-center mb-2">Регистрация</h3>

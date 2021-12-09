@@ -1,3 +1,7 @@
 .footer-container, .margin-footer-fix{
     min-height: 300px;
 }
+
+.main-footer{
+    border-top: 1px solid #687b8b93
+}

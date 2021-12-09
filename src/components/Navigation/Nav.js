@@ -1,5 +1,5 @@
 import './Nav.css';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -9,29 +9,36 @@ export default function Navigation() {
     const { user } = useContext(AuthContext);
 
     return (
-        <Navbar className="top-elements" bg="dark" variant="dark">
-            <Container>
-                <Navbar.Brand> DocRate </Navbar.Brand>
-                <Nav className="me-auto">
-
-                    {user?._id
-                        ?
-                        <>
+        <Navbar className="main-nav top-elements" bg="dark" variant="dark">
+            <Container className="w-100">
+                <Row className="w-100">
+                    <Col className="d-flex justify-content-start">
+                        <Navbar.Brand> DocRate </Navbar.Brand>
+                        <Nav>
                             <Link className="nav-link" to="/"> Начало </Link>
                             <Link className="nav-link" to="/about"> За Нас </Link>
                             <Link className="nav-link" to="/contacts"> Контакти </Link>
-                            <Link className="nav-link" to="/doc/create"> Добави Лекар </Link>
-                            <Link className="nav-link" to="/"> {user?.email} </Link>
-                            <Link className="nav-link" to="/logout"> Излез </Link>
-                        </>
-                        :
-                        <>
-                            <Link className="nav-link" to="/login"> Вход </Link>
-                            <Link className="nav-link" to="/register"> Регистрация </Link>
-                        </>
-                    }
-                </Nav>
+                        </Nav>
+                    </Col>
+                    <Col className="d-flex justify-content-end" >
+                        <Nav>
+                            {user?._id
+                                ?
+                                <>
+                                    <Link className="nav-link" to="/doc/create"> Добави Лекар </Link>
+                                    <Link className="nav-link" to="/">@  {user?.email} </Link>
+                                    <Link className="nav-link " to="/logout"> Излез </Link>
+                                </>
+                                :
+                                <>
+                                    <Link className="nav-link" to="/login"> Вход </Link>
+                                    <Link className="nav-link" to="/register"> Регистрация </Link>
+                                </>
+                            }
+                        </Nav>
+                    </Col>
+                </Row>
             </Container>
-        </Navbar>
+        </Navbar >
     )
 }

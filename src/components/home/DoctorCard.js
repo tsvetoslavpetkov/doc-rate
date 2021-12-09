@@ -6,7 +6,7 @@ export default function DoctorCard({
     doctor
 }) {
     return (
-        <Card border="light" className="home-card" style={{ width: '15rem' }}>
+        <Card  border="light" className="home-card main-card" style={{ width: '15rem' }}>
             <div className="home-card-img" variant="top" style={{ backgroundImage: `url(${doctor.imageUrl})` }}> </div>
             <Card.Body>
 
