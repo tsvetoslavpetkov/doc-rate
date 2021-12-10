@@ -4,7 +4,7 @@ export default function SelectSpeciality(props) {
     return (
         <Form.Group className="mb-2" controlId="formBasicEmail">
             <Form.Label className="label">Специалност</Form.Label>
-            <Form.Select name="speciality">
+            <Form.Select name="speciality" value={props.default}>
                 <option value="00 Общопрактикуващ лекар">00 Общопрактикуващ лекар</option>
                 <option value="01 Акушерство и гинекология">01 Акушерство и гинекология</option>
                 <option value="02 Клинична алергология">02 Клинична алергология</option>

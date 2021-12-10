@@ -4,6 +4,10 @@ export function getAll() {
     return request.get('/data/doctors')
 }
 
+export function getTopThree() {
+    return request.get('/data/doctors?sortBy=_createdOn%20desc&pageSize=5')
+}
+
 export function getOne(id, token) {
     return request.get(`/data/doctors/${id}`, token)
 }

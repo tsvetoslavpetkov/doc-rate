@@ -1,0 +1,21 @@
+.footer-doctor-item-image{
+    background-size: cover;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.footer-doctor-item{
+    border-radius: 3px;
+    height: 40px;
+    background-color: #30363b;
+}
+
+.footer-doctor-item:hover{
+    background-color: #3c4247;
+    color:whitesmoke;
+}
+
+.footer-doctor-item-name{
+    text-align: left;
+}

@@ -1,158 +1,157 @@
 import { useContext, useEffect, useState } from 'react';
 // import validator from 'validator';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap'
+import { Form, Button, Card, } from 'react-bootstrap'
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { edit, getOne } from '../../services/doctorService'
+import SelectSpeciality from '../createDoctor/SelectSpeciality';
+import ErrorNotification from '../ErrorNotification';
 import './EditDoctor.css'
 
 export default function EditDoctor(props) {
     const { id } = useParams();
 
+    const [error, setError] = useState();
     const [doctor, setDoctor] = useState({})
     const [validated, setValidated] = useState(false);
 
     useEffect(() => {
-        getOne(id).then(data => {
-            setDoctor(data);
-        })
+        getOne(id)
+            .then(res => {
+                if (res.errorMessage) {
+                    setError(res.errorMessage)
+                } else {
+                    setDoctor(res);
+                }
+            })
     }, [id])
-    
+
     const { user } = useContext(AuthContext);
 
     async function submitHandler(e) {
         const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        let formData = new FormData(e.currentTarget);
-        let { ...data } = Object.fromEntries(formData);
         e.preventDefault();
 
-        setValidated(true);
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+        }
+        let { ...data } = Object.fromEntries(new FormData(form));
+        data.nzok ? data.nzok = true : data.nzok = false;
+        data.specialityName = data.speciality.split(' ')[1]
+        data.specialityCode = data.speciality.split(' ')[0]
+
         edit(id, data, user.accessToken)
-        props.history.push('/')
+            .then(res => {
+                if (res.errorMessage) {
+                    setError(res.errorMessage)
+                } else {
+                    props.history.push(`/doc/${id}`)
+                }
+            })
+        setValidated(true);
     }
 
     return (
-        <Card >
+        <Card className="main-card">
+            <Card.Header><h4 className="text-center">Редактиране на лекар</h4></Card.Header>
             <Card.Body>
-                <Row>
-                    <h3 className="text-center mb-2">Редактиране на лекар</h3>
-                    <Col className="py-4">
-                        <Form onSubmit={submitHandler} noValidate validated={validated}>
-                            <Form.Group className="mb-2" controlId="formBasicEmail">
-                                <Form.Label className="label">Адрес на изображение</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    name="imageUrl"
-                                    placeholder="https://..."
-                                    defaultValue={doctor.imageUrl}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля попълнете адрес на изображение.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="mb-2" controlId="formBasicEmail">
-                                <Form.Label className="label">Титла</Form.Label>
-                                <Form.Select aria-label="Default select example" value={doctor.title} name="title">
-                                    <option value="д-р">д-р</option>
-                                    <option value="доц.">доц.</option>
-                                    <option value="Проф.">Проф.</option>
-                                    <option value=""> - </option>
-                                </Form.Select>
-                            </Form.Group>
-                            <Form.Group className="mb-2" controlId="formBasicEmail">
-                                <Form.Label className="label">Име</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    name="firstName"
-                                    placeholder="Име"
-                                    defaultValue={doctor.firstName}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля впишете име.
-                                </Form.Control.Feedback>
-                            </Form.Group>
+                {error ? <ErrorNotification message={error} /> : null}
+                <Form onSubmit={submitHandler} noValidate validated={validated}>
 
-                            <Form.Group className="mb-2" controlId="formBasicPassword">
-                                <Form.Label className="label">Фамилия</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    name="secondName"
-                                    placeholder="Фамилия"
-                                    defaultValue={doctor.secondName} />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля изберете фамилия.
-                                </Form.Control.Feedback>
-                            </Form.Group>
+                    <Form.Group className="mb-2" controlId="formBasicEmail">
+                        <Form.Label className="label">Адрес на изображение</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="imageUrl"
+                            placeholder="https://..."
+                            defaultValue={doctor.imageUrl}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Моля попълнете адрес на изображение.
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                            <Form.Group className="mb-2" controlId="formBasicPassword">
-                                <Form.Label className="label">Специалност</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    name="speciality"
-                                    placeholder="специалност"
-                                    defaultValue = {doctor.speciality} />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля изберете специалност.
-                                </Form.Control.Feedback>
-                            </Form.Group>
+                    <Form.Group className="mb-2 d-inline-block align-top" controlId="formBasicEmail">
+                        <Form.Label className="label">Титла</Form.Label>
+                        <Form.Select aria-label="Default select example" value={doctor.title} name="title">
+                            <option value="д-р">д-р</option>
+                            <option value="доц.">доц.</option>
+                            <option value="Проф.">Проф.</option>
+                            <option value=""> - </option>
+                        </Form.Select>
+                    </Form.Group>
 
-                            <Form.Group className="mb-2" controlId="formBasicPassword">
-                                <Form.Label className="label">Адрес</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    name="address"
-                                    placeholder="Въведете адрес..."
-                                    defaultValue = {doctor.address}  />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля изберете адрес.
-                                </Form.Control.Feedback>
-                            </Form.Group>
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicEmail">
+                        <Form.Label className="label">Име</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="firstName"
+                            placeholder="Име"
+                            defaultValue={doctor.firstName}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Моля впишете име.
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                            <Form.Group className="mb-2" controlId="formBasicPassword">
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicPassword">
+                        <Form.Label className="label">Фамилия</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="secondName"
+                            placeholder="Фамилия"
+                            defaultValue={doctor.secondName} />
+                        <Form.Control.Feedback type="invalid">
+                            Моля изберете фамилия.
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                                {['checkbox'].map((type) => (
-                                    <div key={`default-${type}`} className="mb-3">
-                                        <Form.Check
-                                            name="NZOK"
-                                            type={type}
-                                            id={`NZOK`}
-                                            label={`НЗОК`}
-                                        />
-                                    </div>
-                                ))}
-                            </Form.Group>
+                    <SelectSpeciality default={doctor.speciality} />
 
-                            <Form.Group className="mb-2" controlId="formBasicPassword">
-                                <Form.Label className="label">Цена на преглед</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="number"
-                                    name="price"
-                                    placeholder="50 (лв.)"
-                                    defaultValue={doctor.price} />
-                                <Form.Control.Feedback type="invalid">
-                                    Моля изберете специалност.
-                                </Form.Control.Feedback>
-                            </Form.Group>
+                    <Form.Group className="mb-2 d-inline-block w-75" controlId="formBasicPassword">
+                        <Form.Label className="label">Цена на преглед</Form.Label>
+                        <Form.Control
+                            required
+                            type="number"
+                            name="price"
+                            placeholder="50 (лв.)"
+                            defaultValue={doctor.price} />
+                        <Form.Control.Feedback type="invalid">
+                            Моля изберете цена на преглед.
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                            <Button variant="primary" type="submit">
-                                Редактирай
-                            </Button>
-                        </Form>
-                    </Col>
-                </Row>
+                    <Form.Group className="mb-2 d-inline-block w-25 px-5 align-top" controlId="formBasicPassword">
+                        <Form.Label className="label d-block"> Здр. каса </Form.Label>
+                        <br className="mb-2" />
+                        <Form.Check name="NZOK" className="mt-3" type="checkbox" id="NZOK" defaultChecked={doctor.nzok} label="НЗОК" />
+                    </Form.Group>
 
+                    <Form.Group className="mb-2" controlId="formBasicPassword">
+                        <Form.Label className="label">Адрес</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="address"
+                            placeholder="Въведете адрес..."
+                            defaultValue={doctor.address} />
+                        <Form.Control.Feedback type="invalid">
+                            Моля изберете адрес.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Редактирай
+                    </Button>
+                </Form>
             </Card.Body>
+            <Card.Footer>
+                <Link className="no-line text-secondary" to={`/doc/${id}`}>Затвори</Link>
+            </Card.Footer>
         </Card>
     )
 }
