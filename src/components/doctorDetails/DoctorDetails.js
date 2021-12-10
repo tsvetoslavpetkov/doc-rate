@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap'
+import { Card, Button, Row, Col, Form, FloatingLabel } from 'react-bootstrap'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import CommentsSection from './CommentsSection';
 import * as doctorService from '../../services/doctorService'
 import * as likeService from '../../services/likesService'
-import * as commentService from '../../services/likesService'
+import * as commentService from '../../services/commentService.js'
 import './DoctorDetails.css'
 
 export default function DoctorDetails(props) {
@@ -13,6 +14,7 @@ export default function DoctorDetails(props) {
     const [doctor, setDoctor] = useState({});
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
+    const [comments, setComments] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -30,6 +32,10 @@ export default function DoctorDetails(props) {
             }
         })
 
+        commentService.getAll(id, user.accessToken).then(comments => {
+            setComments(comments)
+        })
+
     }, [id, user._id, user.accessToken])
 
     const goBack = () => {
@@ -43,8 +49,20 @@ export default function DoctorDetails(props) {
     }
 
     const likeHandler = () => {
-        likeService.like(id, user.accessToken).then(res => {
-            console.log(res);
+        likeService.like(id, user.accessToken).then(likes => {
+            console.log(likes);
+        })
+    }
+
+    const commentHandler = (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.currentTarget);
+        let { comment } = Object.fromEntries(formData);
+
+        commentService.addComment(id, user.email, comment, user.accessToken).then(res => {
+            let newComments = [...comments];
+            newComments.push(res);
+            setComments(newComments);
         })
     }
 
@@ -78,6 +96,14 @@ export default function DoctorDetails(props) {
                 </Row>
             </Card.Body>
             <Card.Footer>
+                <CommentsSection comments={comments} />
+                <br />
+                <Form onSubmit={commentHandler}>
+                    <FloatingLabel controlId="floatingTextarea" label="Comment" className="mb-3">
+                        <Form.Control as="textarea" name="comment" placeholder="Leave a comment here" />
+                    </FloatingLabel>
+                    <Button type="submit">Добави коментар</Button>
+                </Form>
             </Card.Footer>
         </Card >
     )
