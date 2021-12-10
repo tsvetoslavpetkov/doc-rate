@@ -49,8 +49,10 @@ export default function DoctorDetails(props) {
     }
 
     const likeHandler = () => {
-        likeService.like(id, user.accessToken).then(likes => {
-            console.log(likes);
+        likeService.like(id, user.accessToken).then(res => {
+            let newLikes = likes + 1;
+            setLikes(newLikes)
+            setLiked(true);
         })
     }
 
