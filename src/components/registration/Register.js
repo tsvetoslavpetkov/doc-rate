@@ -22,11 +22,15 @@ export default function Register(props) {
             let { email, password, repeatPassword } = Object.fromEntries(new FormData(form));
             register(email, password)
                 .then(res => {
-                    if (res.errorMessage) {
-                        setError(res.errorMessage)
+                    if (password !== repeatPassword) {
+                        setError("Паролите не съвпадат")
                     } else {
-                        onLogin(res)
-                        props.history.push('/')
+                        if (res.errorMessage) {
+                            setError(res.errorMessage)
+                        } else {
+                            onLogin(res)
+                            props.history.push('/')
+                        }
                     }
                 })
         }

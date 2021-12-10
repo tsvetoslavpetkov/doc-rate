@@ -10,8 +10,8 @@ export default function DoctorCard({
             <div className="home-card-img" variant="top" style={{ backgroundImage: `url(${doctor.imageUrl})` }}> </div>
             <Card.Body>
 
-                <Card.Title>{doctor.title} {doctor.firstName} {doctor.secondName}</Card.Title>
-                <Card.Title>{doctor.speciality}</Card.Title>
+                <h5 className="">{doctor.title} {doctor.firstName} {doctor.secondName}</h5>
+                <h6 className="text-secondary font-weight-light">{doctor.specialityName}</h6>
                 <Link to={'doc/' + doctor._id}><Button variant="primary">Детайли</Button></Link>
             </Card.Body>
             <Card.Footer></Card.Footer>

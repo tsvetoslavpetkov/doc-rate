@@ -23,6 +23,7 @@ export default function DoctorDetails(props) {
         })
 
         likeService.getLikes(id, user.accessToken).then(likes => {
+            console.log(likes)
             setLikes(likes)
         })
 
@@ -32,9 +33,11 @@ export default function DoctorDetails(props) {
             }
         })
 
-        commentService.getAll(id, user.accessToken).then(comments => {
-            setComments(comments)
-        })
+        if (user._id) {
+            commentService.getAll(id, user.accessToken).then(comments => {
+                setComments(comments)
+            })
+        }
 
     }, [id, user._id, user.accessToken])
 
@@ -81,7 +84,7 @@ export default function DoctorDetails(props) {
                     </Col>
                     <Col className="text-sm-left">
                         <h4>{doctor?.title} {doctor?.firstName} {doctor?.secondName}</h4>
-                        <h5>{doctor?.speciality}</h5>
+                        <h5>{doctor?.address}</h5>
                         <h5>Адрес: {doctor?.address}</h5>
                         <h5>Цена: {doctor?.price} лв.</h5>
                         <h5>Харесвания: {likes}</h5>
@@ -97,15 +100,21 @@ export default function DoctorDetails(props) {
                     </Col>
                 </Row>
             </Card.Body>
-            <Card.Footer>
-                <CommentsSection comments={comments} />
-                <br />
-                <Form onSubmit={commentHandler}>
-                    <FloatingLabel controlId="floatingTextarea" label="Comment" className="mb-3">
-                        <Form.Control as="textarea" name="comment" placeholder="Leave a comment here" />
-                    </FloatingLabel>
-                    <Button type="submit">Добави коментар</Button>
-                </Form>
+            <Card.Footer className="p-2">
+                {user._id
+                    ? <>
+                        <CommentsSection comments={comments} />
+                        <Form onSubmit={commentHandler}>
+                            <FloatingLabel controlId="floatingTextarea" label="Коментар..." className="mb-3">
+                                <Form.Control as="textarea" name="comment" placeholder="Коментирай" />
+                            </FloatingLabel>
+                            <Button className="mb-2" type="submit">Добави коментар</Button>
+                        </Form>
+                    </>
+                    : <p>
+                        <Link className="nav-link d-inline p-1" to="/login">Влез</Link>или се<Link className="nav-link d-inline p-1" to="/register">регистрирай</Link>, за да можеш четеш и пишеш коментари.</p>
+                    
+                }
             </Card.Footer>
         </Card >
     )

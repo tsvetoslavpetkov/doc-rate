@@ -6,6 +6,10 @@
   text-decoration: none;
 }
 
+.app{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 #main-content {
   background: #00416A;
   /* fallback for old browsers */

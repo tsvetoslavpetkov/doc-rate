@@ -25,8 +25,9 @@ export default function Navigation() {
                             {user?._id
                                 ?
                                 <>
-                                    <Link className="nav-link" to="/doc/create"> Добави Лекар </Link>
-                                    <Link className="nav-link" to="/">@  {user?.email} </Link>
+                                    <Link className="nav-link" to="/doc/create"> Добави лекар </Link>
+                                    <span className="text-secondary m-2">|</span>
+                                    <Link className="nav-link" to="/">@{user?.email.split('@')[0]} </Link>
                                     <Link className="nav-link " to="/logout"> Излез </Link>
                                 </>
                                 :
