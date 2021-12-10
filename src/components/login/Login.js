@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 // import validator from 'validator';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap'
+import { Form, Button, Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { login } from '../../services/authService'
 import { AuthContext } from '../../contexts/AuthContext';
-import ErrorNotification from './ErrorNotification';
+import ErrorNotification from '../ErrorNotification';
 
 export default function Login(props) {
     const [validated, setValidated] = useState(false);
@@ -13,41 +13,31 @@ export default function Login(props) {
     const [error, setError] = useState();
 
     async function submitHandler(e) {
+        e.preventDefault();
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            e.preventDefault();
             e.stopPropagation();
+        } else {
+            let { email, password } = Object.fromEntries(new FormData(form));
+            login(email, password)
+                .then(res => {
+                    if (res.errorMessage) {
+                        setError(res.errorMessage)
+                    } else {
+                        onLogin(res)
+                        props.history.push('/')
+                    }
+                })
         }
-
-        let formData = new FormData(e.currentTarget);
-        let { email, password } = Object.fromEntries(formData);
-        e.preventDefault();
-
-        login(email, password)
-            .then(res => {
-                if (res.errorMessage) {
-                    setError(res.errorMessage)
-                } else {
-                    onLogin(res)
-                    props.history.push('/')
-                }
-            })
-
         setValidated(true);
-
-        //TODO: validation from server?!!?!?
-        //TODO: validation from validator 
     }
 
     return (
-
-        <Card className="main-card" style={{ width: "700px", minHeight: "450px", top: "-100px" }}>
-            <Card.Body className="login-card">
-                <Row>
-                    <h3 className="text-center mb-2">Вписване</h3>
-                    {error? <ErrorNotification message={error} /> : null}                    
-                    <Col className="py-4">
-                        <Form onSubmit={submitHandler} noValidate validated={validated}>
+        <Card className="main-card" style={{ width: "700px", minHeight: "450px",}}>
+            <Card.Header>  <h4 className="text-center">Вписване</h4></Card.Header>
+            <Card.Body className="login-card align-middle">
+                    {error ? <ErrorNotification message={error} /> : null}
+                        <Form className="w-50 h-100" onSubmit={submitHandler} noValidate validated={validated}>
                             <Form.Group className="mb-2" controlId="formBasicEmail">
                                 <Form.Label className="label">Имейл</Form.Label>
                                 <Form.Control
@@ -61,7 +51,7 @@ export default function Login(props) {
                                 </Form.Control.Feedback>
                             </Form.Group>
 
-                            <Form.Group className="mb-5" controlId="formBasicPassword">
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label className="label">Парола</Form.Label>
                                 <Form.Control
                                     required
@@ -77,15 +67,12 @@ export default function Login(props) {
                                 Вписване
                             </Button>
                         </Form>
-                        <div className="mt-4">
-                            Нямате профил? <Link to="/register" className="no-line" > Регистрация! </Link>
-                        </div>
-                    </Col>
-                    <Col xs={7}>
-                    </Col>
-                </Row>
-
             </Card.Body>
+            <Card.Footer>
+                <div>
+                    Нямате профил? <Link to="/register" className="no-line" > Регистрация! </Link>
+                </div>
+            </Card.Footer>
         </Card>
     )
 }
