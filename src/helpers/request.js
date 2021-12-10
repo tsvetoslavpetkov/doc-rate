@@ -2,9 +2,10 @@ import { MAIN_URL as rootUrl } from "../config/constants";
 
 async function errorHandler(response) {
     let message = await response.text();
-    console.log(JSON.parse(message));
-    return JSON.parse(message);
+    let error = {errorMessage: JSON.parse(message).message}
+    return error;
 }
+
 
 async function get(endPoint, token) {
     let url = rootUrl + endPoint;
@@ -24,7 +25,7 @@ async function get(endPoint, token) {
     }
     let response = await fetch(url, options);
     if (!response.ok) {
-        errorHandler(response)
+        return errorHandler(response)
     } else {
         let result = await response.json()
         return result;
@@ -46,7 +47,7 @@ async function post(endPoint, body, token) {
     options.body = JSON.stringify(body);
     let response = await fetch(url, options);
     if (!response.ok) {
-        errorHandler(response)
+        return errorHandler(response)
     } else {
         let result = await response.json()
         return result;
@@ -68,7 +69,7 @@ async function put(endPoint, body, token) {
     options.body = JSON.stringify(body);
     let response = await fetch(url, options);
     if (!response.ok) {
-        errorHandler(response)
+        return errorHandler(response)
     } else {
         let result = await response.json()
         return result;
@@ -87,13 +88,13 @@ async function del(endPoint, token) {
     }
     let response = await fetch(url, options);
     if (!response.ok) {
-        errorHandler(response)
+        return errorHandler(response)
     } else {
         let result = await response.json()
         return result;
     }
 }
 
-    let methods = { get, post, put, del }
+let methods = { get, post, put, del }
 
-    export default methods;
+export default methods;

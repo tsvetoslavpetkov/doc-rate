@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom'
 import './Login.css'
 import { login } from '../../services/authService'
 import { AuthContext } from '../../contexts/AuthContext';
-
+import ErrorNotification from './ErrorNotification';
 
 export default function Login(props) {
     const [validated, setValidated] = useState(false);
-    const { onLogin } = useContext(AuthContext)
+    const { onLogin } = useContext(AuthContext);
+    const [error, setError] = useState();
 
     async function submitHandler(e) {
         const form = e.currentTarget;
@@ -23,9 +24,13 @@ export default function Login(props) {
         e.preventDefault();
 
         login(email, password)
-            .then(authData => {
-                onLogin(authData);
-                props.history.push('/')
+            .then(res => {
+                if (res.errorMessage) {
+                    setError(res.errorMessage)
+                } else {
+                    onLogin(res)
+                    props.history.push('/')
+                }
             })
 
         setValidated(true);
@@ -40,6 +45,7 @@ export default function Login(props) {
             <Card.Body className="login-card">
                 <Row>
                     <h3 className="text-center mb-2">Вписване</h3>
+                    {error? <ErrorNotification message={error} /> : null}                    
                     <Col className="py-4">
                         <Form onSubmit={submitHandler} noValidate validated={validated}>
                             <Form.Group className="mb-2" controlId="formBasicEmail">

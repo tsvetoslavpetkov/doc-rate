@@ -1,7 +1,8 @@
 import request from '../helpers/request'
 
-export function login(email, password) {
-    return request.post('/users/login', { email, password })
+export async function login(email, password) {
+     let response = await request.post('/users/login', { email, password })
+     return response
 }
 
 export function register(email, password) {

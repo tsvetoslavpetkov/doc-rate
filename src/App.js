@@ -27,7 +27,7 @@ export default function App() {
     return (
         <AuthContext.Provider value={{ user, onLogin, onLogout }}>
             <div className="App">
-                <header user={user.email}>
+                <header user={user?.email}>
                     <Navigation />
                 </header>
                 <main id="main-content">
