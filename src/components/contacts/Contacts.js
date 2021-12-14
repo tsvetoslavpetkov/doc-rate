@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Contacts.css';
 
 export default function Contacts() {
+  document.title = 'DocRate | Контакти'
   return (
     <Card className="main-card" style={{ width: "700px", minHeight: "450px", }}>
       <Card.Header>

@@ -7,6 +7,8 @@ import { Row, Col } from 'react-bootstrap'
 export default function Home() {
   const [doctors, setDoctors] = useState([]);
 
+  document.title = 'DocRate'
+
   useEffect(() => {
     getAll()
       .then(doctors => {

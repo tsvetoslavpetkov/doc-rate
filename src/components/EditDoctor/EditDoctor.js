@@ -10,6 +10,9 @@ import ErrorNotification from '../ErrorNotification';
 import './EditDoctor.css'
 
 export default function EditDoctor(props) {
+
+    document.title = 'DocRate | Редактиране'
+
     const { id } = useParams();
 
     const [error, setError] = useState();
@@ -38,8 +41,8 @@ export default function EditDoctor(props) {
         }
         let { ...data } = Object.fromEntries(new FormData(form));
         data.nzok ? data.nzok = true : data.nzok = false;
-        data.specialityName = data.speciality.split(' ')[1]
         data.specialityCode = data.speciality.split(' ')[0]
+        data.specialityName = data.speciality.split(' ').slice(1).join(' ')
 
         edit(id, data, user.accessToken)
             .then(res => {
@@ -128,7 +131,7 @@ export default function EditDoctor(props) {
                     <Form.Group className="mb-2 d-inline-block w-25 px-5 align-top" controlId="formBasicPassword">
                         <Form.Label className="label d-block"> Здр. каса </Form.Label>
                         <br className="mb-2" />
-                        <Form.Check name="NZOK" className="mt-3" type="checkbox" id="NZOK" defaultChecked={doctor.nzok} label="НЗОК" />
+                        <Form.Check name="nzok" className="mt-3" type="checkbox" id="NZOK" defaultChecked={doctor.nzok} label="НЗОК" />
                     </Form.Group>
 
                     <Form.Group className="mb-2" controlId="formBasicPassword">

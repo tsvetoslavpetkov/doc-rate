@@ -9,6 +9,7 @@ import SelectSpeciality from './SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
 
 export default function CreateDoctor(props) {
+    document.title = 'DocRate | Създаване'
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState();
     const { user } = useContext(AuthContext);
@@ -126,7 +127,7 @@ export default function CreateDoctor(props) {
                             Моля въведете адрес.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    
+
                     <Button variant="primary" type="submit">
                         Добави
                     </Button>

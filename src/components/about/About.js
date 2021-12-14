@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './About.css';
 
 export default function About() {
+  document.title = 'DocRate | За Нас'
   return (
     <Card className="main-card" style={{ width: "700px", minHeight: "450px", }}>
       <Card.Header>

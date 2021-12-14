@@ -53,7 +53,7 @@ export default function DoctorDetails(props) {
             setLiked(true);
         })
     }
-
+    document.title = `DocRate | ${doctor.title} ${doctor.firstName} ${doctor.secondName}`
     return (
         <Card className="main-card">
             <Card.Header style={{ textAlign: "left" }}>

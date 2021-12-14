@@ -12,6 +12,8 @@ export default function Login(props) {
     const { onLogin } = useContext(AuthContext);
     const [error, setError] = useState();
 
+    document.title = 'DocRate | Вписване'
+
     async function submitHandler(e) {
         e.preventDefault();
         const form = e.currentTarget;

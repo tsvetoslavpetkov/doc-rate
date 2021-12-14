@@ -19,7 +19,6 @@ async function get(endPoint, token) {
 
     if (endPoint === '/users/logout') {
         let res = await fetch (url, options)
-        console.log(res);
         return res
     }
     let response = await fetch(url, options);
