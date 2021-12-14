@@ -10,7 +10,7 @@ import { Container } from 'react-bootstrap';
 import Logout from './logout/Logout';
 import EditDoctor from './EditDoctor/EditDoctor';
 
-import { isAuth, isGuest } from '../hoc/Auth';
+import { isAuth, isGuest, isOwner } from '../hoc/Auth';
 
 export default function MainContentRouter() {
     return (
@@ -24,7 +24,7 @@ export default function MainContentRouter() {
                 <Route path="/logout" component={isAuth(Logout)} />
                 <Route path="/doc/create" exact component={isAuth(CreateDoctor)} />
                 <Route path="/doc/:id" exact component={DoctorDetails} />
-                <Route path="/doc/:id/edit" exact component={isAuth(EditDoctor)} />
+                <Route path="/doc/:id/edit" exact component={isAuth(isOwner(EditDoctor))} />
             </Switch>
         </Container>
     )

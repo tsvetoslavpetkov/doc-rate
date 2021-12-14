@@ -1,23 +1,33 @@
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import './About.css';
 
 export default function About() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Card className="main-card" style={{ width: "700px", minHeight: "450px", }}>
+      <Card.Header>
+        <h4 className="text-center">За Нас</h4>
+      </Card.Header>
+      <Card.Body className="about-card align-middle">
+        <Card className="w-50" style={{opacity: '0.9', textAlign: 'left'}} bg="Light">
+          <Card.Body>
+            <Card.Title> Кауза </Card.Title>
+            <Card.Text>
+              Нашата кауза е да предоставим обективна оценка за лекарите в България. Приложението "DocRate" има за цел
+              да предоставя на своите потребители лесно достъпна и изключително добре систематизирана информация на база
+              реални потребителски оценки за медицинските лица в България. 
+              Силно се надяваме да сме ви полезни! ❤
+            </Card.Text>
+          </Card.Body>
+        </Card>
+
+      </Card.Body >
+      <Card.Footer>
+        <div>
+          Имаш въпроси?  <Link to="/contacts" className="no-line" > Свържи се с нас! </Link>
+        </div>
+      </Card.Footer>
+    </Card >
   );
 }
 

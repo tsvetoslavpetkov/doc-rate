@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
-export default function CommentsSection(props) {
+export default function CommentsSection() {
     const [comments, setComments] = useState([]);
     const { user } = useAuth();
     const { id } = useParams();
