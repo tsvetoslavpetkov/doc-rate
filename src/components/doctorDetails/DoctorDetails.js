@@ -71,12 +71,12 @@ export default function DoctorDetails(props) {
                         <h5>Цена: {doctor?.price} лв.</h5>
                         <h5>Харесвания: {likes}</h5>
                         {user._id && (user._id !== doctor._ownerId)
-                            ? <Button disabled={liked} onClick={likeHandler}>{liked ? 'Харесано' : 'Харесай!'}</Button>
+                            ? <Button className="btn-sm" disabled={liked} onClick={likeHandler}>{liked ? 'Харесано' : 'Харесай!'}</Button>
                             : null}
                         {user._id === doctor._ownerId
                             ? <>
-                                <Link to={doctor._id + '/edit'}><Button>Редактирай</Button></Link>
-                                <Button onClick={deleteHandler}>Изтрий</Button>
+                                <Link to={doctor._id + '/edit'}><Button className="btn-sm">Редактирай</Button></Link>
+                                <Button className="btn-sm" onClick={deleteHandler}>Изтрий</Button>
                             </>
                             : null}
                     </Col>

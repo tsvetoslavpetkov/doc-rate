@@ -53,7 +53,7 @@ export default function CommentsSection() {
                         <FloatingLabel controlId="floatingTextarea" label="Коментар..." className="mb-3">
                             <Form.Control as="textarea" name="comment" placeholder="Коментирай" />
                         </FloatingLabel>
-                        <Button className="mb-2" type="submit">Добави коментар</Button>
+                        <Button className="btn-sm mb-2" type="submit">Добави коментар</Button>
                     </Form>
                 </>
                 : <p>

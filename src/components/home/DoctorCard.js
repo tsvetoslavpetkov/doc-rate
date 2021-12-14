@@ -12,7 +12,7 @@ export default function DoctorCard({
 
                 <h5 className="">{doctor.title} {doctor.firstName} {doctor.secondName}</h5>
                 <h6 className="text-secondary font-weight-light">{doctor.specialityName}</h6>
-                <Link to={'doc/' + doctor._id}><Button variant="primary">Детайли</Button></Link>
+                <Link to={'doc/' + doctor._id}><Button className="btn-sm" variant="primary">Детайли</Button></Link>
             </Card.Body>
             <Card.Footer></Card.Footer>
         </Card>
