@@ -1,15 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import CommentsSection from './CommentsSection';
 import * as doctorService from '../../services/doctorService'
 import * as likeService from '../../services/likesService'
 import './DoctorDetails.css'
 
 export default function DoctorDetails(props) {
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth()
     const [doctor, setDoctor] = useState({});
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);

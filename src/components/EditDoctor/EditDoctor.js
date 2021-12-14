@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Card, } from 'react-bootstrap'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { edit, getOne } from '../../services/doctorService'
 import SelectSpeciality from '../createDoctor/SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
@@ -18,6 +18,7 @@ export default function EditDoctor(props) {
     const [error, setError] = useState();
     const [doctor, setDoctor] = useState({})
     const [validated, setValidated] = useState(false);
+    const { user } = useAuth();
 
     useEffect(() => {
         getOne(id)
@@ -28,9 +29,7 @@ export default function EditDoctor(props) {
                     setDoctor(res);
                 }
             })
-    }, [id])
-
-    const { user } = useContext(AuthContext);
+    }, [id])    
 
     async function submitHandler(e) {
         const form = e.currentTarget;

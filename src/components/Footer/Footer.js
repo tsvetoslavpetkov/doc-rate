@@ -1,9 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css'
 import { getTopThree } from '../../services/doctorService';
 import { useEffect, useState } from 'react';
-import DoctorItemFooter from './DoctorItemFooter';
 import { Link } from 'react-router-dom';
+
+import DoctorItemFooter from './DoctorItemFooter';
+import './Footer.css'
 
 
 

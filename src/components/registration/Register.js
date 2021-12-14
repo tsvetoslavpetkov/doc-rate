@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import ErrorNotification from '../ErrorNotification'
 import './Register.css'
 import { register } from '../../services/authService'
-import { AuthContext } from '../../contexts/AuthContext';
-import { useContext, useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { useState } from 'react';
 
 
 export default function Register(props) {
     const [validated, setValidated] = useState(false);
-    const { onLogin } = useContext(AuthContext);
+    const { onLogin } = useAuth();
     const [error, setError] = useState();
 
     document.title = 'DocRate | Регистрация'

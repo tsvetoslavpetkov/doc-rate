@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 // import validator from 'validator';
 import { Form, Button, Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { login } from '../../services/authService'
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import ErrorNotification from '../ErrorNotification';
 
 export default function Login(props) {
     const [validated, setValidated] = useState(false);
-    const { onLogin } = useContext(AuthContext);
+    const { onLogin } = useAuth();
     const [error, setError] = useState();
 
     document.title = 'DocRate | Вписване'

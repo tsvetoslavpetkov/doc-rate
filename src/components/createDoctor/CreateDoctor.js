@@ -1,10 +1,8 @@
-import { useContext, useState } from 'react';
-// import validator from 'validator';
-import { Form, Button, Card} from 'react-bootstrap'
+import { useState } from 'react';
+import { Form, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { create } from '../../services/doctorService'
-import './CreateDoctor.css'
 import SelectSpeciality from './SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
 
@@ -12,7 +10,7 @@ export default function CreateDoctor(props) {
     document.title = 'DocRate | Създаване'
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState();
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth;
 
     async function submitHandler(e) {
         e.preventDefault();
@@ -21,10 +19,9 @@ export default function CreateDoctor(props) {
             e.stopPropagation();
         } else {
             let { ...data } = Object.fromEntries(new FormData(form));
-            data.nzok? data.nzok = true : data.nzok = false;
-            data.specialityName = data.speciality.split(' ')[1]
+            data.nzok ? data.nzok = true : data.nzok = false;
             data.specialityCode = data.speciality.split(' ')[0]
-            //TODO: VALIDATION 
+            data.specialityName = data.speciality.split(' ').slice(1).join(' ')
 
             create(data, user.accessToken)
                 .then(res => {
@@ -112,7 +109,7 @@ export default function CreateDoctor(props) {
 
                     <Form.Group className="mb-2 d-inline-block w-25 px-5 align-top" controlId="formBasicPassword">
                         <Form.Label className="label d-block"> Здр. каса </Form.Label>
-                        <br className="mb-2"/>
+                        <br className="mb-2" />
                         <Form.Check name="NZOK" className="mt-3" type="checkbox" id="NZOK" label="НЗОК" />
                     </Form.Group>
 
