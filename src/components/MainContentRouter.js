@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import Home from './home/Home';
 import About from './about/About'
-import Doctors from './doctors/Doctors';
+import Contacts from './contacts/Contacts';
 import Login from './login/Login'
 import Register from './registration/Register';
 import CreateDoctor from './createDoctor/CreateDoctor';
@@ -18,7 +18,7 @@ export default function MainContentRouter() {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/about" component={About} />
-                <Route path="/contact" component={Doctors} />
+                <Route path="/contacts" component={Contacts} />
                 <Route path="/login" component={isGuest(Login)} />
                 <Route path="/register" component={isGuest(Register)} />
                 <Route path="/logout" component={isAuth(Logout)} />

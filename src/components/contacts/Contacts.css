@@ -1,0 +1,7 @@
+.contacts-card {
+  background-repeat: no-repeat;
+  background-image: url('./contacts-animation.svg');
+  background-position: right -40px bottom -150px;
+  background-size: 70%;
+}
+
