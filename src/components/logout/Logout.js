@@ -1,19 +1,21 @@
 import { useContext } from "react"
+import { Redirect } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext"
 import { logout } from "../../services/authService";
 
-export default function Logout(props) {
+export default function Logout() {
 
     const { onLogout, user } = useContext(AuthContext);
 
-    (async function () {
-        logout(user.accessToken).then(() => {
-            onLogout();
-            props.history.push('/login')
-        });
-    })()
+    logout(user.accessToken)
+        .then(res => {
+            if (res.ok) {
+                onLogout()
+            }
+        })
 
     return (
-        null
+        <Redirect to='/login'></Redirect>
     )
+
 }

@@ -3,10 +3,10 @@ import Navigation from './components/Navigation/Nav';
 import Footer from './components/Footer/Footer'
 import MainContentRouter from './components/MainContentRouter';
 import { AuthContext } from './contexts/AuthContext';
-import { useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
 
 export default function App() {
-    const [user, setUser] = useState({
+    const [user, setUser] = useLocalStorage('user', {
         accessToken: '',
         email: '',
         _id: '',

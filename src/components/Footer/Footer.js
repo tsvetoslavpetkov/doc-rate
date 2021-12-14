@@ -18,7 +18,6 @@ export default function Footer() {
                 if (res.errorMessage) {
                     setError(res.errorMessage)
                 } else {
-                    console.log(res);
                     setDoctors(res);
                 }
             })
@@ -34,7 +33,7 @@ export default function Footer() {
                             <div>
                                 <p>Последно добавени:</p>
                                 {doctors?.map((doctor) => (
-                                    <Link to={`/doc/${doctor._id}`} className="text-secondary" style={{ textDecoration: 'none' }}><DoctorItemFooter key={doctor._id} doctor={doctor} /></Link>
+                                    <Link key={doctor._id} to={`/doc/${doctor._id}`} className="text-secondary" style={{ textDecoration: 'none' }}><DoctorItemFooter key={doctor._id} doctor={doctor} /></Link>
                                 ))}
                             </div>
                         </Col>
