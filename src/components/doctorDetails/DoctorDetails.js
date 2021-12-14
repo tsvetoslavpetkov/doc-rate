@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { Card, Button, Row, Col, Form, FloatingLabel } from 'react-bootstrap'
+import { Card, Button, Row, Col } from 'react-bootstrap'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import CommentsSection from './CommentsSection';
 import * as doctorService from '../../services/doctorService'
 import * as likeService from '../../services/likesService'
-import * as commentService from '../../services/commentService.js'
 import './DoctorDetails.css'
 
 export default function DoctorDetails(props) {
@@ -14,7 +13,6 @@ export default function DoctorDetails(props) {
     const [doctor, setDoctor] = useState({});
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
-    const [comments, setComments] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -22,9 +20,12 @@ export default function DoctorDetails(props) {
             setDoctor(data);
         })
 
-        likeService.getLikes(id, user.accessToken).then(likes => {
-            console.log(likes)
-            setLikes(likes)
+        likeService.getLikes(id, user.accessToken).then(res => {
+            if (res.errorMessage) {
+                console.log(res.errorMessage);
+            } else {
+                setLikes(res)
+            }
         })
 
         likeService.hasLiked(id, user._id).then(liked => {
@@ -32,12 +33,6 @@ export default function DoctorDetails(props) {
                 setLiked(true)
             }
         })
-
-        if (user._id) {
-            commentService.getAll(id, user.accessToken).then(comments => {
-                setComments(comments)
-            })
-        }
 
     }, [id, user._id, user.accessToken])
 
@@ -58,19 +53,6 @@ export default function DoctorDetails(props) {
             setLiked(true);
         })
     }
-
-    const commentHandler = (e) => {
-        e.preventDefault();
-        let formData = new FormData(e.currentTarget);
-        let { comment } = Object.fromEntries(formData);
-
-        commentService.addComment(id, user.email, comment, user.accessToken).then(res => {
-            let newComments = [...comments];
-            newComments.push(res);
-            setComments(newComments);
-        })
-    }
-
 
     return (
         <Card className="main-card">
@@ -100,21 +82,8 @@ export default function DoctorDetails(props) {
                     </Col>
                 </Row>
             </Card.Body>
-            <Card.Footer className="p-2">
-                {user._id
-                    ? <>
-                        <CommentsSection comments={comments} />
-                        <Form onSubmit={commentHandler}>
-                            <FloatingLabel controlId="floatingTextarea" label="Коментар..." className="mb-3">
-                                <Form.Control as="textarea" name="comment" placeholder="Коментирай" />
-                            </FloatingLabel>
-                            <Button className="mb-2" type="submit">Добави коментар</Button>
-                        </Form>
-                    </>
-                    : <p>
-                        <Link className="nav-link d-inline p-1" to="/login">Влез</Link>или се<Link className="nav-link d-inline p-1" to="/register">регистрирай</Link>, за да можеш четеш и пишеш коментари.</p>
-                    
-                }
+            <Card.Footer>
+                <CommentsSection />
             </Card.Footer>
         </Card >
     )
