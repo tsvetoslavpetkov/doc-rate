@@ -6,7 +6,7 @@
   text-decoration: none;
 }
 
-.app{
+.app {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -22,11 +22,19 @@
   margin-bottom: -300px;
 }
 
-.btn{
-  color:red;
+.btn-primary {
+  background: #6392af !important;
+  border-color: #3c6a86 !important;
+  
 }
 
-.main-card{
+.btn-primary:hover { 
+  background: #346a8b !important;
+  border-color: #20475f !important;
+  color:white !important;
+}
+
+.main-card {
   opacity: 0.9;
   box-shadow: 0px 2px 4px #00000036;
 }

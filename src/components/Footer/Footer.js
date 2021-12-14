@@ -40,11 +40,11 @@ export default function Footer() {
                         <Col sm={4}>
                             <div>
                                 <p>Навигация:</p>
-                                    <div>
+                                <div>
                                     <Link to={`/`} className="nav-link text-secondary" style={{ textDecoration: 'none' }}>Начало</Link>
                                     <Link to={`/contacts`} className="nav-link text-secondary" style={{ textDecoration: 'none' }}>Контакти</Link>
                                     <Link to={`/about`} className="nav-link text-secondary" style={{ textDecoration: 'none' }}>За нас</Link>
-                                    </div>
+                                </div>
                             </div>
                         </Col>
                     </Row>

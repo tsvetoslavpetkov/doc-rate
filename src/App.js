@@ -2,41 +2,19 @@ import './App.css';
 import Navigation from './components/Navigation/Nav';
 import Footer from './components/Footer/Footer'
 import MainContentRouter from './components/MainContentRouter';
-import { AuthContext } from './contexts/AuthContext';
-import useLocalStorage from './hooks/useLocalStorage';
+import { AuthProvider } from './contexts/AuthContext';
 
 export default function App() {
-    const [user, setUser] = useLocalStorage('user', {
-        accessToken: '',
-        email: '',
-        _id: '',
-    })
-
-    function onLogin(authData) {
-        setUser(authData);
-    }
-
-    function onLogout() {
-        setUser({
-            accessToken: '',
-            email: '',
-            _id: '',
-        });
-    }
 
     return (
-        <AuthContext.Provider value={{ user, onLogin, onLogout }}>
+        <AuthProvider>
             <div className="App">
-                <header user={user?.email}>
-                    <Navigation />
-                </header>
+                <Navigation />
                 <main id="main-content">
                     <MainContentRouter />
                 </main>
-                <footer>
-                    <Footer />
-                </footer>
+                <Footer />
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }

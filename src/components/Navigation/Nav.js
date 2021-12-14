@@ -1,12 +1,11 @@
 import './Nav.css';
 import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Navigation() {
-
-    const { user } = useContext(AuthContext);
+    
+    const { user } = useAuth();
 
     return (
         <Navbar className="main-nav top-elements" bg="dark" variant="dark">
