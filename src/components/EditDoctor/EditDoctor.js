@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { edit, getOne } from '../../services/doctorService'
+import AddressAutocomplete from '../createDoctor/AddressAutocomplete';
 import SelectSpeciality from '../createDoctor/SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
 import './EditDoctor.css'
@@ -133,18 +134,7 @@ export default function EditDoctor(props) {
                         <Form.Check name="nzok" className="mt-3" type="checkbox" id="NZOK" defaultChecked={doctor.nzok} label="НЗОК" />
                     </Form.Group>
 
-                    <Form.Group className="mb-2" controlId="formBasicPassword">
-                        <Form.Label className="label">Адрес</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            name="address"
-                            placeholder="Въведете адрес..."
-                            defaultValue={doctor.address} />
-                        <Form.Control.Feedback type="invalid">
-                            Моля изберете адрес.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+                    <AddressAutocomplete defaultValue={doctor.address} />
 
                     <Button variant="primary" type="submit">
                         Редактирай

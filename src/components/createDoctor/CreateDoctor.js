@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { create } from '../../services/doctorService'
 import SelectSpeciality from './SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
+import AddressAutocomplete from './AddressAutocomplete';
 
 export default function CreateDoctor(props) {
     document.title = 'DocRate | Създаване'
@@ -113,22 +114,15 @@ export default function CreateDoctor(props) {
                         <Form.Check name="NZOK" className="mt-3" type="checkbox" id="NZOK" label="НЗОК" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label className="label">Адрес</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            name="address"
-                            placeholder="гр. .... ул. ...." />
-                        <Form.Control.Feedback type="invalid">
-                            Моля въведете адрес.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+                    {/* Controlled form component */}
+                    {/* google maps api */}
+                    <AddressAutocomplete />
 
                     <Button variant="primary" type="submit">
                         Добави
                     </Button>
                 </Form>
+                
             </Card.Body>
             <Card.Footer>
                 <Link className="no-line text-secondary" to="/">Затвори</Link>
