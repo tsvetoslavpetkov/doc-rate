@@ -12,13 +12,11 @@
 }
 
 #main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
   background: #00416A;
-  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E4E5E6, #00416A);
-  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E4E5E6, #00416A);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   min-height: 100vh;
   margin-bottom: -300px;
 }
@@ -26,7 +24,7 @@
 .btn-primary {
   background: #6392af !important;
   border-color: #3c6a86 !important;
-  
+  margin: 2px !important;  
 }
 
 .btn-primary:hover { 
@@ -35,7 +33,9 @@
   color:white !important;
 }
 
-.main-card {
+.main-card {  
+  width: 700px;
+  min-height: 450px;
   opacity: 0.9;
   box-shadow: 0px 2px 4px #00000036;
 }

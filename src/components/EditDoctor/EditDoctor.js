@@ -5,8 +5,8 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { edit, getOne } from '../../services/doctorService'
-import AddressAutocomplete from '../createDoctor/AddressAutocomplete';
-import SelectSpeciality from '../createDoctor/SelectSpeciality';
+import AddressAutocomplete from '../CreateDoctor/AddressAutocomplete';
+import SelectSpeciality from '../CreateDoctor/SelectSpeciality';
 import ErrorNotification from '../ErrorNotification';
 import './EditDoctor.css'
 

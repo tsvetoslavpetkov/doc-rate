@@ -67,7 +67,7 @@ export default function CreateDoctor(props) {
                         </Form.Select>
                     </Form.Group>
 
-                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicEmail">
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '5px' }} controlId="formBasicEmail">
                         <Form.Label className="label">Име</Form.Label>
                         <Form.Control
                             required
@@ -80,7 +80,7 @@ export default function CreateDoctor(props) {
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicEmail">
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '5px' }} controlId="formBasicEmail">
                         <Form.Label className="label">Фамилия</Form.Label>
                         <Form.Control
                             required

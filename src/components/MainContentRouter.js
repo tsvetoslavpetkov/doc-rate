@@ -1,20 +1,22 @@
 import { Route, Switch } from 'react-router-dom';
-import Home from './home/Home';
-import About from './about/About'
-import Contacts from './contacts/Contacts';
-import Login from './login/Login'
-import Register from './registration/Register';
-import CreateDoctor from './createDoctor/CreateDoctor';
-import DoctorDetails from './doctorDetails/DoctorDetails';
 import { Container } from 'react-bootstrap';
-import Logout from './logout/Logout';
+
+import Home from './Home/Home';
+import About from './About/About'
+import Contacts from './Contacts/Contacts';
+import Login from './Login/Login'
+import Register from './Registration/Register';
+import CreateDoctor from './CreateDoctor/CreateDoctor';
+import DoctorDetails from './DoctorDetails/DoctorDetails';
+import Logout from './Logout/Logout';
 import EditDoctor from './EditDoctor/EditDoctor';
 
+//HOCs for route guarding
 import { isAuth, isGuest, isOwner } from '../hoc/Auth';
 
 export default function MainContentRouter() {
     return (
-        <Container fluid className="d-flex align-items-center justify-content-center container" style={{ minHeight: "100vh", width: "100%" }}>
+        <Container fluid className="d-flex justify-content-center container">
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/about" component={About} />

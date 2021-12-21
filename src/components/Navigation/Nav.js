@@ -12,7 +12,7 @@ export default function Navigation() {
             <Container className="w-100">
                 <Row className="w-100">
                     <Col className="d-flex justify-content-start">
-                        <img alt="logo" src="./logo512.png" width="35px" height="35px" className="mx-3 mt-1" style={{opacity: '0.7'}} /> 
+                        <img alt="logo" src="/logo512.png" width="35px" height="35px" className="mx-3 mt-1" style={{opacity: '0.7'}} /> 
                         <Navbar.Brand> DocRate </Navbar.Brand>
                         <Nav>
                             <Link className="nav-link" to="/"> Начало </Link>
