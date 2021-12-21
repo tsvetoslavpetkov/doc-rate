@@ -56,31 +56,42 @@ export default function DoctorDetails(props) {
     document.title = `DocRate | ${doctor.title} ${doctor.firstName} ${doctor.secondName}`
     return (
         <Card className="main-card">
-            <Card.Header style={{ textAlign: "left" }}>
-                <Button variant="outline-secondary" size="sm" onClick={goBack}>Назад</Button>
+            <Card.Header className="d-flex justify-content-between">
+                <Button variant="outline-secondary" className="d-inline" size="sm" onClick={goBack}>Назад</Button>
+                <h4 className="d-inline" style={{ marginRight: '200px' }}>{doctor?.title} {doctor?.firstName} {doctor?.secondName}</h4>
             </Card.Header>
-            <Card.Body className="details-card-body">
-                <Row>
-                    <Col>
-                        <div className="doctor-details-card-img" style={{ backgroundImage: `url(${doctor.imageUrl})`, }}></div>
-                    </Col>
-                    <Col className="text-sm-left">
-                        <h4>{doctor?.title} {doctor?.firstName} {doctor?.secondName}</h4>
-                        <h5>{doctor?.address}</h5>
-                        <h5>Адрес: {doctor?.address}</h5>
-                        <h5>Цена: {doctor?.price} лв.</h5>
-                        <h5>Харесвания: {likes}</h5>
-                        {user._id && (user._id !== doctor._ownerId)
-                            ? <Button className="btn-sm" disabled={liked} onClick={likeHandler}>{liked ? 'Харесано' : 'Харесай!'}</Button>
-                            : null}
-                        {user._id === doctor._ownerId
-                            ? <>
-                                <Link to={doctor._id + '/edit'}><Button className="btn-sm">Редактирай</Button></Link>
-                                <Button className="btn-sm" onClick={deleteHandler}>Изтрий</Button>
-                            </>
-                            : null}
-                    </Col>
-                </Row>
+            <Card.Body className="details-card-body blur-card-background p-0" style={{ backgroundImage: `url(${doctor.imageUrl})`, backdropFilter: 'blur(10px)', }}>
+                <div className="whiten p-3">
+                    <Row>
+                        <Col>
+                            <div className="doctor-details-card-img" style={{ backgroundImage: `url(${doctor.imageUrl})` }}></div>
+                        </Col>
+                        <Col className="text-sm-left">
+                            <span>Специалност:</span>
+                            <h6>{doctor?.specialityName}</h6>
+                            <span>Работи по здравна каса:</span>
+                            <h6>{doctor?.nzok?"Да":'Не'}</h6>
+                            <span>Код на специлаността:</span>
+                            <h6>{doctor?.specialityCode}</h6>
+                            <span>Цена първичен преглед:</span>
+                            <h6>{doctor?.price} лв.</h6>
+                            <span>Адрес:</span>
+                            <h6>{doctor?.address} </h6>
+                            <hr />
+                            <h5>Харесвания: {likes}</h5>
+                            <hr />
+                            {user._id && (user._id !== doctor._ownerId)
+                                ? <Button className="btn-sm" disabled={liked} onClick={likeHandler}>{liked ? 'Харесано' : 'Харесай!'}</Button>
+                                : null}
+                            {user._id === doctor._ownerId
+                                ? <>
+                                    <Link to={doctor._id + '/edit'}><Button className="btn-sm">Редактирай</Button></Link>
+                                    <Button className="btn-sm" onClick={deleteHandler}>Изтрий</Button>
+                                </>
+                                : null}
+                        </Col>
+                    </Row>
+                </div>
             </Card.Body>
             <Card.Footer>
                 <CommentsSection />

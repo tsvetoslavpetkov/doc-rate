@@ -1,4 +1,3 @@
-import './Home.css';
 import { getAll } from '../../services/doctorService';
 import { useEffect, useState } from 'react';
 import DoctorCard from './DoctorCard';

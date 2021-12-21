@@ -86,7 +86,7 @@ export default function EditDoctor(props) {
                         </Form.Select>
                     </Form.Group>
 
-                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicEmail">
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '5px' }} controlId="formBasicEmail">
                         <Form.Label className="label">Име</Form.Label>
                         <Form.Control
                             required
@@ -100,7 +100,7 @@ export default function EditDoctor(props) {
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '10px' }} controlId="formBasicPassword">
+                    <Form.Group className="mb-2 d-inline-block align-top" style={{ marginLeft: '5px' }} controlId="formBasicPassword">
                         <Form.Label className="label">Фамилия</Form.Label>
                         <Form.Control
                             required
@@ -134,7 +134,7 @@ export default function EditDoctor(props) {
                         <Form.Check name="nzok" className="mt-3" type="checkbox" id="NZOK" defaultChecked={doctor.nzok} label="НЗОК" />
                     </Form.Group>
 
-                    <AddressAutocomplete defaultValue={doctor.address} />
+                    <AddressAutocomplete value={doctor.address} />
 
                     <Button variant="primary" type="submit">
                         Редактирай
