@@ -1,7 +1,11 @@
 import request from '../helpers/request'
 
-export function getLikes(id, token) {
-    return request.get(`/data/likes?where=doctorId%3D%22${id}%22&distinct=_ownerId&count`, token)
+export function getLikes(id) {
+    return request.get(`/data/likes?where=doctorId%3D%22${id}%22&distinct=_ownerId&count`)
+}
+
+export function getAllLikes() {
+    return request.get(`/data/likes`)
 }
 
 export function hasLiked(id, userId, token) {

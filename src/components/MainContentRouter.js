@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 import Home from './Home/Home';
+import MyProfile from './MyProfile/MyProfile';
 import About from './About/About'
 import Contacts from './Contacts/Contacts';
 import Login from './Login/Login'
@@ -20,6 +21,7 @@ export default function MainContentRouter() {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/about" component={About} />
+                <Route path="/myprofile" component={MyProfile} />
                 <Route path="/contacts" component={Contacts} />
                 <Route path="/login" component={isGuest(Login)} />
                 <Route path="/register" component={isGuest(Register)} />

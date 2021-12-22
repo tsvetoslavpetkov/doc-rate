@@ -1,5 +1,8 @@
 import request from '../helpers/request'
 
+export function getAllMine(userId) {
+    return request.get(`/data/doctors?where=_ownerId%3D%22${userId}%22`)
+}
 export function getAll() {
     return request.get('/data/doctors')
 }

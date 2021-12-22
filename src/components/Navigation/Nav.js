@@ -27,7 +27,7 @@ export default function Navigation() {
                                 <>  <div className="avatar-nav"></div>
                                     <Link className="nav-link" to="/doc/create"> Добави лекар </Link>
                                     <span className="text-secondary m-2">|</span>
-                                    <Link className="nav-link" to="/">@{user?.email.split('@')[0]} </Link>
+                                    <Link className="nav-link" to="/myprofile">@{user?.email.split('@')[0]} </Link>
                                     <Link className="nav-link " to="/logout"> Излез </Link>
                                 </>
                                 :
