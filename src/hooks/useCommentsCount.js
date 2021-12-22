@@ -11,7 +11,7 @@ export default function useCommentsCount(id) {
     }, [id])
 
     if (commentsCount === null) {
-        return 'Зареждане...';
+        return '...';
     }
 
     return commentsCount;

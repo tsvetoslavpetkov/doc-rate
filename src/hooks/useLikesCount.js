@@ -11,7 +11,7 @@ export default function useLikesCount(id) {
     }, [id])
 
     if (likesCount === null) {
-        return 'Зареждане...';
+        return '...';
     }
 
     return likesCount;

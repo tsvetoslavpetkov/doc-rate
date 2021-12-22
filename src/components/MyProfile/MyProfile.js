@@ -30,6 +30,7 @@ export default function MyProfile(props) {
     function handleAvatarSubmit(e) {
         e.preventDefault();
         let { imageUrl } = Object.fromEntries(new FormData(e.currentTarget));
+        
 
         setUserImage(imageUrl, user._id, user.accessToken)
             .then(res => {
@@ -38,6 +39,7 @@ export default function MyProfile(props) {
                 } else {
                     console.log(res.imageUrl);
                     setImage(imageUrl)
+                    e.target.reset();
                 }
             }
             )
