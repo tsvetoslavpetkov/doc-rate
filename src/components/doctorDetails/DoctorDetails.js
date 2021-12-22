@@ -57,10 +57,20 @@ export default function DoctorDetails(props) {
     return (
         <Card className="main-card">
             <Card.Header className="d-flex justify-content-between">
-                <Button variant="outline-secondary" className="d-inline" size="sm" onClick={goBack}>Назад</Button>
-                <h4 className="d-inline" style={{ marginRight: '200px' }}>{doctor?.title} {doctor?.firstName} {doctor?.secondName}</h4>
+                <Button
+                    variant="outline-secondary"
+                    className="d-inline"
+                    size="sm"
+                    onClick={goBack}>
+                    Назад
+                </Button>
+                <h5 className="d-inline" style={{ marginRight: '200px' }}>
+                    {doctor?.title} {doctor?.firstName} {doctor?.secondName}
+                </h5>
             </Card.Header>
-            <Card.Body className="details-card-body blur-card-background p-0" style={{ backgroundImage: `url(${doctor.imageUrl})`, backdropFilter: 'blur(10px)', }}>
+            <Card.Body
+                className="details-card-body blur-card-background p-0"
+                style={{ backgroundImage: `url(${doctor.imageUrl})`, backdropFilter: 'blur(10px)', }}>
                 <div className="whiten p-3">
                     <Row>
                         <Col>
@@ -70,7 +80,7 @@ export default function DoctorDetails(props) {
                             <span>Специалност:</span>
                             <h6>{doctor?.specialityName}</h6>
                             <span>Работи по здравна каса:</span>
-                            <h6>{doctor?.nzok?"Да":'Не'}</h6>
+                            <h6>{doctor?.nzok ? "Да" : 'Не'}</h6>
                             <span>Код на специлаността:</span>
                             <h6>{doctor?.specialityCode}</h6>
                             <span>Цена първичен преглед:</span>

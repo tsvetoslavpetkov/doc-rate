@@ -6,11 +6,13 @@ import './Login.css'
 import { login } from '../../services/authService'
 import { useAuth } from '../../contexts/AuthContext';
 import ErrorNotification from '../ErrorNotification';
+import { useNotifContext } from '../../contexts/NotifContext';
 
 export default function Login(props) {
     const [validated, setValidated] = useState(false);
     const { onLogin } = useAuth();
     const [error, setError] = useState();
+    const {addNotification} = useNotifContext()
 
     document.title = 'DocRate | Вписване'
 
@@ -26,6 +28,7 @@ export default function Login(props) {
                     if (res.errorMessage) {
                         setError(res.errorMessage)
                     } else {
+                        addNotification("Успешно вписване в профила!", 'success')
                         onLogin(res)
                         props.history.push('/')
                     }
