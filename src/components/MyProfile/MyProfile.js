@@ -79,11 +79,13 @@ export default function MyProfile(props) {
                 <Card.Footer>
                 </Card.Footer>
             </Card >
+            <hr />
             <>
                 {!doctors.length
-                    ? <h3>Няма добавени лекари!</h3>
+                    ? <h3 className="my-3" >Няма добавени лекари от @{user.email.split('@')[0]}!</h3>
                     : <div>
                         <h5 className="my-3" >Лекари създадени от @{user.email.split('@')[0]}</h5>
+                        <hr />
                         <Row xs={2} md={5} className="g-4">
                             {doctors.map((doctor) => (
                                 <Col style={{ minWidth: '300px' }} key={doctor._id}>
