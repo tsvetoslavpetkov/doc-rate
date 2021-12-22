@@ -2,6 +2,7 @@ import './Nav.css';
 import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { Avatar } from './Avatar';
 
 export default function Navigation() {
     
@@ -24,10 +25,10 @@ export default function Navigation() {
                         <Nav>
                             {user?._id
                                 ?
-                                <>  <div className="avatar-nav"></div>
-                                    <Link className="nav-link" to="/doc/create"> Добави лекар </Link>
+                                <>  <Link className="nav-link" to="/doc/create"> Добави лекар </Link>
                                     <span className="text-secondary m-2">|</span>
-                                    <Link className="nav-link" to="/myprofile">@{user?.email.split('@')[0]} </Link>
+                                    
+                                    <Link className="nav-link" to="/myprofile"> <Avatar size={20}/> @{user?.email.split('@')[0]} </Link>
                                     <Link className="nav-link " to="/logout"> Излез </Link>
                                 </>
                                 :
