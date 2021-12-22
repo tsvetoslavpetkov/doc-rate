@@ -2,8 +2,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import './Avatar.css'
 
 export function Avatar({ size }) {
-    const { user } = useAuth();
-    let url = user.avatarUrl ? user.avatarUrl : '/user.png';
+    const { userImage } = useAuth();
+    let url = userImage ? userImage : '/user.png';
 
     return (
         <div className="user-avatar align-middle d-inline-block" style={{

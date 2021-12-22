@@ -1,13 +1,16 @@
-import { Row, Col, Card, Button } from 'react-bootstrap'
+import { Row, Col, Card, Button, Form } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { getAllMine } from '../../services/doctorService';
 import DoctorCard from '../Home/DoctorCard';
 import './MyProfile.css'
+import { setUserImage } from '../../services/authService';
+import ErrorNotification from '../ErrorNotification';
 
 export default function MyProfile(props) {
-    const { user } = useAuth();
+    const { user, userImage, setImage } = useAuth();
     const [doctors, setDoctors] = useState([]);
+    const [error, setError] = useState();
 
     document.title = `DocRate | @${user.email.split('@')[0]}`
 
@@ -24,23 +27,49 @@ export default function MyProfile(props) {
         props.history.push('/')
     }
 
-    let url = user.avatarUrl ? user.avatarUrl : '/user.png';
+    function handleAvatarSubmit(e) {
+        e.preventDefault();
+        let { imageUrl } = Object.fromEntries(new FormData(e.currentTarget));
+
+        setUserImage(imageUrl, user._id, user.accessToken)
+            .then(res => {
+                if (res.errorMessage) {
+                    setError(res.errorMessage)
+                } else {
+                    console.log(res.imageUrl);
+                    setImage(imageUrl)
+                }
+            }
+            )
+    }
 
     return (
         <div>
             <Card className="main-card-user" >
                 <Card.Header className="d-flex justify-content-between">
                     <Button variant="outline-secondary" className="d-inline" size="sm" onClick={goBack}>Назад</Button>
-                    <h4 className="d-inline" style={{ marginRight: '200px' }}>@{user.email.split('@')[0]}</h4>
+                    <h5 className="d-inline" style={{ marginRight: '200px' }}>@{user.email.split('@')[0]}</h5>
                 </Card.Header>
-                <Card.Body className="details-card-body blur-card-background p-0" style={{ backgroundImage: `url(${url})`, backdropFilter: 'blur(10px)', }}>
+                <Card.Body className="details-card-body blur-card-background p-0" style={{ backgroundImage: `url(${userImage ? userImage : '/user.png'})`, backdropFilter: 'blur(10px)', }}>
+                    {error ? <ErrorNotification message={error} /> : null}
                     <div className="whiten p-3">
                         <Row>
                             <Col sm={3}>
-                                <div className="user-details-card-img" style={{ backgroundImage: `url(${url})` }}></div>
+                                <div className="user-details-card-img" style={{ backgroundImage: `url(${userImage ? userImage : '/user.png'})` }}></div>
                             </Col>
                             <Col className="text-sm-left">
-                                
+                                <Form onSubmit={handleAvatarSubmit}>
+                                    <Form.Group controlId="formBasicEmail" >
+                                        <Form.Label>Път към изображение</Form.Label>
+                                        <Form.Control type="text" size="sm" placeholder="https://" name="imageUrl" required />
+                                        <Form.Text className="text-muted">
+                                            Сменете аватара си, като посочите път към изображение.
+                                        </Form.Text>
+                                    </Form.Group>
+                                    <Button variant="primary" size="sm" type="submit">
+                                        Промени
+                                    </Button>
+                                </Form>
                             </Col>
                         </Row>
                     </div>
@@ -62,7 +91,7 @@ export default function MyProfile(props) {
                         </Row>
                     </div>
                 }</>
-        </div>
+        </div >
     )
 }
 

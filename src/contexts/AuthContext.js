@@ -1,5 +1,6 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage'
+import { getUserImage } from '../services/authService';
 
 export const AuthContext = createContext();
 
@@ -9,6 +10,15 @@ export function AuthProvider({ children }) {
         accessToken: '',
         email: '',
         _id: '',
+    })
+    const [userImage, setUserImage] = useState('/user.png');
+
+    getUserImage(user._id).then(res => {
+        if (res?.imageUrl) {
+            let newImage = userImage;
+            newImage = res.imageUrl
+            setUserImage(newImage)
+        }
     })
 
     function onLogin(authData) {
@@ -23,8 +33,14 @@ export function AuthProvider({ children }) {
         });
     }
 
+    function setImage(url) {
+        setUserImage(url)
+    }
+
+
+
     return (
-        <AuthContext.Provider value={{ user, onLogin, onLogout, isAuthenticated: Boolean(user._id) }}>
+        <AuthContext.Provider value={{ user, userImage, setImage, onLogin, onLogout, isAuthenticated: Boolean(user._id) }}>
             {children}
         </AuthContext.Provider>
     )
